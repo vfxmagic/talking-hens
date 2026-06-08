@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talking Hens × VFXMAGIC — Marketing Pack</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1c241d;--paper:#f4f3ee;--card:#fff;--green:#2f6b4f;--green-d:#235139;--muted:#6b716a;--line:#e4e2d8;--gold:#b8924a;--cream:#faf6ec}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);font-family:'Inter',system-ui,sans-serif;color:var(--ink);line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 40px}
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);font-weight:700;margin:0 0 12px}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:46px;line-height:1.05;margin:0 0 16px}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:32px;line-height:1.1;color:var(--green-d);margin:0 0 10px}
+  p.big{font-size:18px;color:#3d4a32;max-width:680px}
+  p{font-size:15.5px;color:#3d4a32}
+  .muted{color:var(--muted)}
+  /* cover */
+  .cover{min-height:92vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(120deg,#1f4a37,#2f6b4f);color:#fff;border:0;position:relative;overflow:hidden}
+  .cover .wrap{position:relative;z-index:2}
+  .cover .img{position:absolute;inset:0;background:url('suite/assets/cover.jpg') center 60%/cover;opacity:.34}
+  .cover .img::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#1f4a37cc,#2f6b4f88)}
+  .cover .logos{display:flex;align-items:center;gap:16px;margin-bottom:30px}
+  .cover .logos img{height:46px;background:#fff;border-radius:10px;padding:6px}
+  .cover .x{font-size:22px;opacity:.7}
+  .cover h1{color:#fff;font-size:58px;max-width:880px}
+  .cover p{color:#dcefe3;font-size:19px;max-width:620px}
+  .cover .by{margin-top:34px;font-size:13px;letter-spacing:.04em;color:#bfe0cf}
+  /* overview grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .tile .ic{font-size:26px}.tile h3{margin:8px 0 4px;font-size:16px}.tile p{font-size:13px;margin:0;color:var(--muted)}
+  /* preview */
+  .preview{margin-top:26px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#e7e6e0;box-shadow:0 12px 40px rgba(0,0,0,.08)}
+  .preview .frame{height:520px;overflow:hidden;position:relative}
+  .preview iframe{width:100%;height:1500px;border:0;background:#e7e6e0}
+  .preview .fade{position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(transparent,#e7e6e0)}
+  .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:14px;padding:12px 24px;border-radius:30px}
+  .btn.p{background:var(--green);color:#fff}.btn.p:hover{background:var(--green-d)}
+  .btn.s{border:1.5px solid #cfddd2;color:var(--green)}.btn.s:hover{background:#eef4ef}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  /* pricing */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  .tier{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column}
+  .tier.best{border:2px solid var(--green);box-shadow:0 10px 30px rgba(47,107,79,.14);position:relative}
+  .tier.best::before{content:"Recommended";position:absolute;top:-11px;left:24px;background:var(--green);color:#fff;font-size:11px;font-weight:600;padding:3px 12px;border-radius:999px}
+  .tier h3{margin:0;font-size:17px}.tier .pr{font-size:28px;font-weight:700;color:var(--green-d);margin:6px 0}
+  .tier .pr small{font-size:13px;color:var(--muted);font-weight:500}
+  .tier ul{margin:10px 0 0;padding-left:18px;font-size:13.5px;color:#3d4a32}.tier li{margin-bottom:7px}
+  .setup{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-top:18px;font-size:14.5px}
+  .setup b{color:var(--green-d)}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:22px 0 0}
+  .steps li{counter-increment:s;position:relative;padding:10px 0 10px 44px;font-size:16px;border-bottom:1px solid var(--line)}
+  .steps li:last-child{border:0}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px}
+  .end{background:linear-gradient(120deg,#1f4a37,#2f6b4f);color:#fff;border:0}
+  .end h2{color:#fff}.end p{color:#dcefe3;font-size:18px}
+  .end a{color:#fff;font-weight:600}
+  .nav{position:fixed;top:0;left:0;right:0;background:rgba(244,243,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50;font-size:12.5px}
+  .nav .wrap{display:flex;gap:18px;align-items:center;padding:12px 40px;flex-wrap:wrap}
+  .nav b{color:var(--green-d)}.nav a{color:var(--muted);text-decoration:none}.nav a:hover{color:var(--green)}
+  .nav .sp{flex:1}
+  @media print{.nav,.preview,.fade{display:none}body{background:#fff}.cover{min-height:auto}}
+  @media(max-width:760px){.grid,.tiers,.two{grid-template-columns:1fr}.cover h1{font-size:38px}h1{font-size:34px}.nav .hidesm{display:none}}
+</style></head>
+<body>
+
+<div class="nav"><div class="wrap"><b>Talking Hens × VFXMAGIC</b><span class="sp"></span>
+  <a href="#work" class="hidesm">The work</a><a href="#newsletter" class="hidesm">Newsletter</a><a href="#site" class="hidesm">Website</a><a href="#tools" class="hidesm">Tools</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#next">Next</a>
+</div></div>
+
+<!-- COVER -->
+<section class="cover"><div class="img"></div><div class="wrap">
+  <div class="logos"><img src="https://talkinghens.com.au/cdn/shop/files/Talking_Hens_Logo_Final_No_Tag-1.png?v=1677111420" alt="Talking Hens"><span class="x">×</span><span style="font-weight:700;font-size:18px;letter-spacing:.04em">VFXMAGIC</span></div>
+  <p class="eyebrow" style="color:#bfe0cf">Marketing concepts · prepared for</p>
+  <h1>Marketing that matches the quality of your hens.</h1>
+  <p>Great emails and social, every week, in your voice — and you barely lift a finger. Here's what we've built for Talking Hens.</p>
+  <div class="by">Prepared by VFXMAGIC · 2026</div>
+</div></section>
+
+<!-- OPPORTUNITY -->
+<section><div class="wrap">
+  <p class="eyebrow">The opportunity</p>
+  <h2>You've built a great farm. Let's make the marketing match.</h2>
+  <p class="big">Talking Hens has the products, the expertise and 1,000+ happy customers. What's missing is a consistent, high-quality marketing rhythm — without it becoming another job for you. That's exactly what we do: agency-quality creative, set-and-forth, run by us in your voice.</p>
+</div></section>
+
+<!-- THE WORK -->
+<section id="work"><div class="wrap">
+  <p class="eyebrow">What we've built for you</p>
+  <h2>A complete marketing system — already mocked up</h2>
+  <p class="muted">Not slides — real, working previews you can click through today.</p>
+  <div class="grid">
+    <div class="tile"><div class="ic">📰</div><h3>Weekly newsletter</h3><p>Three designs to choose from.</p></div>
+    <div class="tile"><div class="ic">🖥️</div><h3>Website refresh</h3><p>Cleaner, faster, more to sell.</p></div>
+    <div class="tile"><div class="ic">📱</div><h3>Social media</h3><p>Instagram & Facebook, on-brand.</p></div>
+    <div class="tile"><div class="ic">🧭</div><h3>"Start Your Flock" quiz</h3><p>Turns browsers into buyers.</p></div>
+    <div class="tile"><div class="ic">🧮</div><h3>Feed calculator</h3><p>Helpful — and it sells feed.</p></div>
+    <div class="tile"><div class="ic">✉️</div><h3>Email automations</h3><p>Welcome, cart, win-back — automatic.</p></div>
+  </div>
+</div></section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter"><div class="wrap">
+  <p class="eyebrow">The weekly newsletter</p>
+  <h2>Three designs — pick the one that feels most "you"</h2>
+  <p class="muted">Each is a real issue, end to end, with every link working. Same content, three personalities.</p>
+  <div class="preview"><div class="frame"><iframe src="mockups/letter-full.html" scrolling="no" title="Letter from the Farm"></iframe><div class="fade"></div></div></div>
+  <div class="btns">
+    <a class="btn p" href="mockups/realexamples-index.html" target="_blank" rel="noopener">Compare all three →</a>
+    <a class="btn s" href="mockups/weekly-newsletter-full.html" target="_blank" rel="noopener">The Weekly</a>
+    <a class="btn s" href="mockups/letter-full.html" target="_blank" rel="noopener">Letter from the Farm</a>
+    <a class="btn s" href="mockups/coop-full.html" target="_blank" rel="noopener">The Coop</a>
+  </div>
+</div></section>
+
+<!-- WEBSITE -->
+<section id="site"><div class="wrap">
+  <p class="eyebrow">Website refresh</p>
+  <h2>A storefront that does more of the selling</h2>
+  <p class="muted">Cleaner hierarchy, sharper product cards, a stronger "hens for sale" journey — mobile-first.</p>
+  <div class="preview"><div class="frame"><iframe src="suite/website.html" scrolling="no" title="Website"></iframe><div class="fade"></div></div></div>
+  <div class="btns"><a class="btn p" href="suite/website.html" target="_blank" rel="noopener">Open the website concept →</a><a class="btn s" href="brand-suite.html" target="_blank" rel="noopener">See the full brand board</a></div>
+</div></section>
+
+<!-- SOCIAL + TOOLS -->
+<section id="tools"><div class="wrap">
+  <p class="eyebrow">Social &amp; customer tools</p>
+  <h2>The same brand, everywhere — plus two clever tools</h2>
+  <div class="two">
+    <div>
+      <div class="preview"><div class="frame"><iframe src="suite/instagram.html" scrolling="no" title="Instagram"></iframe><div class="fade"></div></div></div>
+      <div class="btns"><a class="btn s" href="suite/instagram.html" target="_blank" rel="noopener">Instagram</a><a class="btn s" href="suite/facebook.html" target="_blank" rel="noopener">Facebook</a></div>
+    </div>
+    <div>
+      <div class="preview"><div class="frame"><iframe src="suite/feed-calculator.html" scrolling="no" title="Feed Calculator"></iframe><div class="fade"></div></div></div>
+      <div class="btns"><a class="btn p" href="suite/feed-calculator.html" target="_blank" rel="noopener">Try the calculator →</a><a class="btn s" href="suite/start-flock.html" target="_blank" rel="noopener">Try the quiz</a></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- EMAIL AUTOMATIONS -->
+<section id="email"><div class="wrap">
+  <p class="eyebrow">Email automations</p>
+  <h2>Emails that run themselves</h2>
+  <p class="muted">Welcome, abandoned-cart, post-purchase care and win-back — they send automatically based on what a customer does, 24/7, in your voice.</p>
+  <div class="preview"><div class="frame"><iframe src="suite/email-automations.html" scrolling="no" title="Email automations"></iframe><div class="fade"></div></div></div>
+  <div class="btns"><a class="btn p" href="suite/email-automations.html" target="_blank" rel="noopener">See the flows →</a></div>
+</div></section>
+
+<!-- HOW IT WORKS -->
+<section id="how"><div class="wrap">
+  <p class="eyebrow">How it works for you</p>
+  <h2>You glance and approve. We do the rest.</h2>
+  <p class="big">You get a simple page to log into. Tell us what's happening on the farm — new birds, a sale, an event — drop in a photo, and that's it. We prepare your content <b>weeks ahead</b>, schedule it for the right dates, and send you a quick preview to approve with one tap. Nothing ever goes out without your okay. It runs quietly in the background — you stay in control.</p>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="tile"><div class="ic">🗣️</div><h3>You tell us</h3><p>What's on at the farm (once a week, 2 min).</p></div>
+    <div class="tile"><div class="ic">✍️</div><h3>We create</h3><p>On-brand emails & posts, weeks ahead.</p></div>
+    <div class="tile"><div class="ic">👍</div><h3>You approve</h3><p>One-tap preview. Your final say, always.</p></div>
+    <div class="tile"><div class="ic">📈</div><h3>We report</h3><p>What worked, what's next — monthly.</p></div>
+  </div>
+</div></section>
+
+<!-- PRICING -->
+<section id="pricing"><div class="wrap">
+  <p class="eyebrow">Plans</p>
+  <h2>Simple monthly plans</h2>
+  <div class="tiers">
+    <div class="tier"><h3>The Weekly</h3><div class="pr">$950<small>/mo</small></div><ul><li>1 weekly newsletter</li><li>Written in your voice</li><li>Scheduled &amp; sent</li><li>Monthly report</li></ul></div>
+    <div class="tier best"><h3>Newsletter + Social</h3><div class="pr">$2,200<small>/mo</small></div><ul><li>Everything in The Weekly</li><li>3–4 social posts/week (IG + FB)</li><li>Seasonal campaigns</li><li>Monthly results review</li></ul></div>
+    <div class="tier"><h3>The Full Works</h3><div class="pr">from $3,500<small>/mo</small></div><ul><li>Everything in + Social</li><li>Email automations managed</li><li>Quiz &amp; calculator upkeep</li><li>Strategy call + dashboard</li></ul></div>
+  </div>
+  <div class="setup"><b>One-off setup &amp; activation — $4,500.</b> Turns these previews into a live, running engine (brand &amp; social system set up, automated emails switched on, your login created). This work would normally be ~$15,000 piece by piece. <span class="muted">All plans month-to-month after an initial 6 months. Prefer to prepay a year? Save ~10%. Prices in AUD.</span></div>
+</div></section>
+
+<!-- NEXT -->
+<section id="next" class="end"><div class="wrap">
+  <p class="eyebrow" style="color:#bfe0cf">Getting started</p>
+  <h2>The first 30 days</h2>
+  <ol class="steps" style="color:#fff">
+    <li style="border-color:rgba(255,255,255,.18)">A short kick-off chat + access to your store and email.</li>
+    <li style="border-color:rgba(255,255,255,.18)">We switch on your highest-value automated emails (welcome + abandoned-cart).</li>
+    <li style="border-color:rgba(255,255,255,.18)">Your first newsletter goes out — with you watching every step.</li>
+    <li style="border-color:rgba(255,255,255,.18)">First results report, and we lock in the easy weekly rhythm.</li>
+  </ol>
+  <p style="margin-top:30px">Happy to walk you through any of it. <br><a href="mailto:andrew@vfxmagic.com.au">andrew@vfxmagic.com.au</a></p>
+  <p style="font-size:12.5px;color:#bfe0cf;margin-top:30px">Prepared by VFXMAGIC · marketing studio · Previews are concepts for discussion; nothing is published or sent without your approval.</p>
+</div></section>
+
+</body></html>
