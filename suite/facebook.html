@@ -578,12 +578,12 @@ function FacebookPage() {
     {
       when: "Yesterday at 9:14am · 🌦",
       body: "Frosty start at Merricks this morning! ❄️ The girls are fluffed up and the heat lamps in the brooder are glowing. Winter's the season your chooks quietly need you most — pop in this week for warm bedding and a vitamin top-up. Kettle's on! ☕",
-      img: TH.img.hero, likes: 342, comments: 28, shares: 11, tag: "Photo",
+      img: "https://vfxmagic.github.io/talking-hens/suite/assets/girl.jpg", likes: 342, comments: 28, shares: 11, tag: "Photo",
     },
     {
       when: "Mon at 4:02pm",
       body: "🐔 NEW IN THE YARD — point-of-lay Welsummers and Marans have arrived! Beautiful speckled and chocolate-brown eggs, hand-raised and health-checked. First in, best dressed — reserve yours before the weekend.",
-      img: TH.img.story, likes: 506, comments: 73, shares: 24, tag: "Live hens",
+      img: "https://vfxmagic.github.io/talking-hens/suite/assets/hens.jpg", likes: 506, comments: 73, shares: 24, tag: "Live hens",
     },
   ];
   return (
@@ -646,7 +646,7 @@ function FacebookPage() {
       </div>
 
       <div className="fb-cover">
-        <div className="fb-cover-img"><img src={TH.img.story} alt="" /></div>
+        <div className="fb-cover-img"><img src="https://vfxmagic.github.io/talking-hens/suite/assets/hens.jpg" alt="" /></div>
         <div className="fb-head">
           <div className="fb-pfp"><img src={TH.img.logo} alt="Talking Hens" /></div>
           <div className="fb-head-info">
@@ -686,7 +686,7 @@ function FacebookPage() {
           <div className="fb-card">
             <h3>Photos</h3>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:4,borderRadius:8,overflow:'hidden'}}>
-              {[TH.img.hero,TH.img.bundle1,TH.img.story,TH.img.bundle2,TH.img.bundle3,TH.img.hero].map((s,i)=>(<img key={i} src={s} style={{width:'100%',height:78,objectFit:'cover'}} alt="" />))}
+              {["https://vfxmagic.github.io/talking-hens/suite/assets/girl.jpg",TH.img.bundle1,"https://vfxmagic.github.io/talking-hens/suite/assets/hens.jpg",TH.img.bundle2,TH.img.bundle3,"https://vfxmagic.github.io/talking-hens/suite/assets/girl.jpg"].map((s,i)=>(<img key={i} src={s} style={{width:'100%',height:78,objectFit:'cover'}} alt="" />))}
             </div>
           </div>
         </div>
