@@ -102,11 +102,8 @@ function THIcon({ kind, size = 22, color = "#3f6a34", stroke = 1.8 }) {
 Object.assign(window, { TH, THLogo, THMotif, THIcon });
 
 //==== iOS FRAME ====
-// @ds-adherence-ignore -- omelette starter scaffold (raw elements/hex/px by design)
 
 /* BEGIN USAGE */
-// iOS.jsx — Simplified iOS 26 (Liquid Glass) device frame
-// Based on the iOS 26 UI Kit + Figma status bar spec. No assets, no deps.
 // Exports (to window): IOSDevice, IOSStatusBar, IOSNavBar, IOSGlassPill, IOSList, IOSListRow, IOSKeyboard
 //
 // Usage — wrap your screen content in <IOSDevice> to get the bezel, status bar
@@ -158,7 +155,6 @@ function IOSStatusBar({ dark = false, time = '9:41' }) {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Liquid glass pill — blur + tint + shine
 // ─────────────────────────────────────────────────────────────
 function IOSGlassPill({ children, dark = false, style = {} }) {
   return (
@@ -345,7 +341,6 @@ function IOSDevice({
 }
 
 // ─────────────────────────────────────────────────────────────
-// Keyboard — iOS 26 liquid glass
 // ─────────────────────────────────────────────────────────────
 function IOSKeyboard({ dark = false }) {
   const glyph = dark ? 'rgba(255,255,255,0.7)' : '#595959';
@@ -386,7 +381,6 @@ function IOSKeyboard({ dark = false }) {
         ? '0 -2px 20px rgba(0,0,0,0.09)'
         : '0 -1px 6px rgba(0,0,0,0.018), 0 -3px 20px rgba(0,0,0,0.012)',
     }}>
-      {/* liquid glass bg — same recipe as nav pills */}
       <div style={{
         position: 'absolute', inset: 0, borderRadius: 27,
         backdropFilter: 'blur(12px) saturate(180%)',
@@ -453,7 +447,6 @@ Object.assign(window, {
 });
 
 //==== CHROME FRAME ====
-// @ds-adherence-ignore -- omelette starter scaffold (raw elements/hex/px by design)
 
 /* BEGIN USAGE */
 // Chrome.jsx — Simplified Chrome browser window (dark theme, macOS)
@@ -645,8 +638,8 @@ function InstagramProfile() {
       <div className="ig-prof">
         <div className="ig-av"><div className="in"><img src={TH.img.logo} alt="" /></div></div>
         <div className="ig-stats">
-          <div><b>1,284</b><span>posts</span></div>
-          <div><b>38.6k</b><span>followers</span></div>
+          <div><b>600+</b><span>posts</span></div>
+          <div><b>8.9k</b><span>followers</span></div>
           <div><b>312</b><span>following</span></div>
         </div>
       </div>
@@ -727,10 +720,10 @@ function InstagramPost() {
       <div className="igp-img"><img src={TH.img.story} alt="" /></div>
       <div className="igp-acts"><span>♡</span><span>💬</span><span>➤</span><span className="sp"></span><span>🔖</span></div>
       <div className="igp-meta">
-        <div className="lk">2,317 likes</div>
+        <div className="lk">214 likes</div>
         <div className="cap"><b>talkinghens</b> Meet the new girls! 🐔 Point-of-lay Welsummers just arrived — those speckled eggs are worth the wait. Hand-raised, health-checked and ready for their forever backyard. Reserve yours via the link in bio 💚</div>
         <div className="cap tags">#backyardchickens #talkinghens #welsummer #chooksofinstagram #morningtonpeninsula</div>
-        <div className="cm">View all 84 comments</div>
+        <div className="cm">View all 18 comments</div>
         <div className="tm">2 days ago</div>
       </div>
     </div>
