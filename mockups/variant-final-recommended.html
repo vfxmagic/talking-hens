@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talking Hens Weekly — RECOMMENDED (story-first, hardened)</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#296150; --green-pale:#D6E2D0; --green-mid:#386051; --green-deep:#1f4a3b;
+    --cream:#FCF9F5; --cream2:#FAFBF8; --ink:#23271f; --muted:#5b605c; --bg:#eceae5;
+    --font:'Poppins','Helvetica Neue',Arial,sans-serif;
+    --serif:Georgia,'Times New Roman',serif; /* web-safe: survives Outlook (Fraunces optional w/ this fallback) */
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);font-family:var(--font);font-weight:300;color:var(--ink);-webkit-font-smoothing:antialiased;padding:28px 12px}
+  .label{max-width:600px;margin:0 auto 10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#7a8a5f;text-align:center;font-weight:500}
+  .email{max-width:600px;margin:0 auto;background:var(--cream2);border-radius:4px;overflow:hidden;box-shadow:0 12px 44px rgba(0,0,0,.14)}
+  /* masthead — real text, survives images-off */
+  .top{text-align:center;padding:24px 0 6px}
+  .top .mark{font-weight:600;color:var(--green);font-size:16px;letter-spacing:.06em}
+  .kicker{text-align:center;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--green-mid);margin:5px 0 0}
+  /* hero = real <img> in production (alt text required); gradient is mockup placeholder */
+  .hero{height:260px;margin-top:18px;background:
+      radial-gradient(circle at 72% 22%, rgba(255,255,255,.22), transparent 55%),
+      linear-gradient(150deg,#264f3d,#6f9158 65%,#cdbb8c);position:relative}
+  .hero .note{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+  /* headline = real HTML text below the image (never overlaid) */
+  .headline{font-family:var(--serif);font-weight:500;font-size:31px;line-height:1.15;color:var(--green-mid);margin:0;padding:32px 44px 4px}
+  .body{padding:6px 44px 4px}
+  .greet{font-size:15px;margin:14px 0 14px;color:var(--muted)}
+  .body p{font-size:15px;line-height:1.78;margin:0 0 16px}
+  .takeaways{margin:4px 0 6px;padding:0}
+  .takeaways li{font-size:14px;line-height:1.55;margin:0 0 11px;list-style:none;padding-left:22px;position:relative}
+  .takeaways li::before{content:"";position:absolute;left:2px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--green)} /* real CSS dot, not emoji */
+  /* secondary CTA: the content promise, understated */
+  .post{margin:22px 0 2px}
+  .post a{display:inline-block;border:1.5px solid var(--green);color:var(--green);text-decoration:none;padding:11px 26px;border-radius:30px;font-weight:500;font-size:14px}
+  /* personal sign-off */
+  .sign{padding:18px 44px 28px;display:flex;align-items:center;gap:14px}
+  .sign .av{width:50px;height:50px;border-radius:50%;background:linear-gradient(145deg,#6f9158,#cdbb8c);flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:15px;letter-spacing:.02em}
+  .sign .who{font-size:15px}.sign .who b{font-weight:500;display:block}.sign .who span{font-size:13px;color:var(--muted)}
+  /* THE commercial climax — highest-margin product, the one loud button */
+  .hens{margin:0 44px 24px;background:var(--green);color:#fff;border-radius:16px;padding:26px 28px;text-align:left}
+  .hens h3{margin:0 0 4px;font-size:18px;font-weight:600}
+  .hens .sub{margin:0 0 16px;font-size:13px;opacity:.85}
+  .hens ul{margin:0 0 18px;padding:0;list-style:none}
+  .hens li{font-size:14px;line-height:1.95;padding-left:20px;position:relative}
+  .hens li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.65)}
+  .hens .btn{display:inline-block;background:#fff;color:var(--green-deep);text-decoration:none;padding:13px 30px;border-radius:30px;font-weight:600;font-size:14px}
+  /* low-fatigue product row */
+  .shelf{background:var(--cream);padding:20px 30px 26px}
+  .shelf .h{text-align:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#9a9890;margin:0 0 16px}
+  .row{display:flex;gap:16px}
+  .item{flex:1;text-align:center}
+  .item .ph{height:84px;border-radius:8px;background:linear-gradient(145deg,#eef0e8,#dfe6d4);display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:.12em;color:#9aa890;text-transform:uppercase}
+  .item .nm{font-size:13px;margin:9px 0 1px}.item .pr{font-size:12px;color:var(--muted)}
+  .item a{font-size:12px;color:var(--green);text-decoration:underline;text-underline-offset:2px}
+  .foot{background:#efeee9;text-align:center;padding:20px 24px;font-size:11px;color:#7d8079;line-height:1.6}
+  .foot a{color:var(--green)}
+  @media (max-width:480px){
+    .headline{font-size:25px;padding:26px 24px 4px}.body,.sign{padding-left:24px;padding-right:24px}
+    .hens{margin:0 24px 22px}.row{flex-direction:column}.item{display:flex;align-items:center;gap:12px;text-align:left}
+    .item .ph{width:60px;height:60px;flex:none}
+  }
+</style>
+</head>
+<body>
+  <div class="label">★ Recommended — story-first (B) · hardened for the inbox (A) · trimmed (C)</div>
+  <div class="email">
+    <div class="top"><div class="mark">🐔 TALKING HENS</div><div class="kicker">The Weekly · Winter</div></div>
+    <div class="hero"><div class="note">[ hero photo — frosty morning run ]</div></div>
+    <h1 class="headline">Why your girls have gone quiet</h1>
+    <div class="body">
+      <p class="greet">Hi Kerryn,</p>
+      <p>Every June the same email lands in my inbox: “Jason, my girls have stopped laying — have I done something wrong?” Almost always, the answer is no.</p>
+      <p>Hens lay on daylight, not warmth. Once we drop below roughly 14 hours of light a day — which we have — their bodies quietly pull back on eggs to put that energy into staying warm. It’s not illness, it’s not your feed, and it’s certainly not you.</p>
+      <ul class="takeaways">
+        <li>It’s the shortening days, not the cold, that slows laying.</li>
+        <li>Older and heritage hens feel it more than young hybrids like our Hy-Lines.</li>
+        <li>A good layer feed keeps them in condition so they bounce back come spring.</li>
+        <li>Artificial light <em>can</em> keep them laying — but there’s a catch worth reading first.</li>
+      </ul>
+      <div class="post"><a>Read the full post →</a></div>
+    </div>
+    <div class="sign">
+      <div class="av">J&amp;G</div>
+      <div class="who"><b>Jason &amp; Giuliana</b><span>Talking Hens, Merricks</span></div>
+    </div>
+
+    <div class="hens">
+      <h3>🐣 In the yard this week</h3>
+      <p class="sub">Healthy, ready-to-go birds — first in, first served.</p>
+      <ul>
+        <li>Hy-Line Brown 18-week-olds</li>
+        <li>Silkies 18-week-olds</li>
+        <li>Sexed Australorp chicks</li>
+        <li>Hy-Line chicks at 2-weeks-old</li>
+      </ul>
+      <a class="btn">See this week’s birds →</a>
+    </div>
+
+    <div class="shelf">
+      <div class="h">While you’re here</div>
+      <div class="row">
+        <div class="item"><div class="ph">photo</div><div class="nm">Layer Feed</div><div class="pr">$32.99</div><a>Shop</a></div>
+        <div class="item"><div class="ph">photo</div><div class="nm">Twin Cup Drinker</div><div class="pr">$79.99</div><a>Shop</a></div>
+        <div class="item"><div class="ph">photo</div><div class="nm">Wood Shavings</div><div class="pr">$26.99</div><a>Shop</a></div>
+      </div>
+    </div>
+
+    <div class="foot">
+      No longer want to receive these emails? <a>Unsubscribe</a>.<br>
+      Talking Hens · 3590 Frankston-Flinders Road, Merricks VIC 3916
+    </div>
+  </div>
+</body>
+</html>

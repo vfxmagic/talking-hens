@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talking Hens Weekly — Layout Options &amp; Recommendation</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#296150;--green-mid:#386051;--cream:#FCF9F5;--ink:#23271f;--muted:#5b605c;--bg:#e7e6e0;--gold:#b8924a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);font-family:'Poppins','Helvetica Neue',Arial,sans-serif;font-weight:300;color:var(--ink);padding:30px 18px 60px}
+  .wrap{max-width:1180px;margin:0 auto}
+  h1{font-weight:600;font-size:26px;color:var(--green);margin:0 0 4px}
+  .sub{color:var(--muted);font-size:15px;margin:0 0 26px}
+  h2{font-weight:600;font-size:18px;color:var(--green-mid);margin:34px 0 12px}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.06);font-size:14px}
+  th,td{padding:11px 14px;text-align:left;border-bottom:1px solid #efeee9}
+  th{background:var(--green);color:#fff;font-weight:500}
+  td.win{background:#eef5ee;font-weight:500;color:var(--green)}
+  .pick{color:var(--gold);font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+  .col{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.07);display:flex;flex-direction:column}
+  .col.best{outline:3px solid var(--gold);outline-offset:0}
+  .ch{padding:12px 14px;font-size:13px;line-height:1.4;border-bottom:1px solid #efeee9}
+  .ch b{font-weight:600;font-size:14px;display:block;color:var(--green-mid)}
+  .ch.best b{color:var(--gold)}
+  iframe{width:100%;height:760px;border:0;background:#eceae5}
+  .scroll{overflow:hidden}
+  .open{display:block;text-align:center;padding:9px;font-size:12px;color:var(--green);text-decoration:none;border-top:1px solid #efeee9}
+  .why{background:#fff;border-radius:12px;padding:22px 26px;box-shadow:0 4px 18px rgba(0,0,0,.06);font-size:14.5px;line-height:1.7}
+  .why ul{margin:8px 0 0;padding-left:20px}.why li{margin-bottom:8px}
+  .why .k{color:var(--green);font-weight:500}
+  .note{font-size:13px;color:var(--muted);margin-top:18px;line-height:1.6}
+  @media(max-width:980px){.grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Talking Hens Weekly — layout options</h1>
+  <p class="sub">Three directions + the team's recommended synthesis. Same winter content in all four; only the <em>layout</em> changes.</p>
+
+  <h2>How the team scored them</h2>
+  <table>
+    <tr><th>Lens (who)</th><th>A · The Weekly</th><th>B · Letter from the Farm</th><th>C · Shopfront</th></tr>
+    <tr><td><b>Conversion / revenue</b></td><td>5</td><td class="win">8 — winner</td><td>6.5 — “the trap”</td></tr>
+    <tr><td><b>Email / mobile robustness</b></td><td class="win">7 — winner</td><td>4</td><td>3</td></tr>
+    <tr><td><b>Brand / voice moat</b></td><td>7</td><td class="win">9 — winner</td><td>4</td></tr>
+  </table>
+  <p class="note"><b>The read:</b> B's <em>arrangement</em> wins the two lenses that move the needle (revenue + voice), but loses on robustness because of the very things that make it pretty (drop cap, web-font serif, emoji-as-bullets) — and it runs long. C looks sales-optimised but fragments attention and reads like a flyer, which erodes the trust that sells live birds. A is the safe, robust baseline but its nav/masthead chrome and an <em>unlinked</em> hens list leave money on the table. → The best layout is <span class="pick">B's structure, hardened with A's robustness and trimmed toward C's length</span> = the Recommended.</p>
+
+  <h2>See them</h2>
+  <div class="grid">
+    <div class="col">
+      <div class="ch"><b>A · The Weekly</b>Faithful to their current template, refined.</div>
+      <div class="scroll"><iframe src="variant-a-the-weekly.html" scrolling="no"></iframe></div>
+      <a class="open" href="variant-a-the-weekly.html" target="_blank">Open full ↗</a>
+    </div>
+    <div class="col">
+      <div class="ch"><b>B · Letter from the Farm</b>Story-first, voice-forward.</div>
+      <div class="scroll"><iframe src="variant-b-letter-from-the-farm.html" scrolling="no"></iframe></div>
+      <a class="open" href="variant-b-letter-from-the-farm.html" target="_blank">Open full ↗</a>
+    </div>
+    <div class="col">
+      <div class="ch"><b>C · Shopfront</b>Commerce-forward, click-optimised.</div>
+      <div class="scroll"><iframe src="variant-c-shopfront.html" scrolling="no"></iframe></div>
+      <a class="open" href="variant-c-shopfront.html" target="_blank">Open full ↗</a>
+    </div>
+    <div class="col best">
+      <div class="ch best"><b>★ Recommended</b>B's structure, hardened + trimmed.</div>
+      <div class="scroll"><iframe src="variant-final-recommended.html" scrolling="no"></iframe></div>
+      <a class="open" href="variant-final-recommended.html" target="_blank">Open full ↗</a>
+    </div>
+  </div>
+
+  <h2>Why the Recommended layout, specifically</h2>
+  <div class="why">
+    <ul>
+      <li><span class="k">Story sits above the sell.</span> The reason people open a Talking Hens email is Jason's voice — so the letter leads, and commerce sits below his signature. That ordering <em>is</em> the soft-sell, built into the page.</li>
+      <li><span class="k">The highest-margin product gets the one loud button.</span> Live birds are the money. "In the yard this week" is the visual climax — a green card with the single boldest CTA ("See this week's birds"). In Variant A the hens were an <em>unlinked</em> list; here they're the primary action.</li>
+      <li><span class="k">One primary action per zone, no click-scatter.</span> A quiet outline link for the blog (engagement), a loud button for the birds (revenue), a low-key product row for "while you're here." No competing buttons fighting above the fold like Variant C.</li>
+      <li><span class="k">Built to survive a real inbox.</span> Headline is real HTML text <em>below</em> the image (never overlaid — C's headline & CTA would vanish with images off). No drop cap, web-safe serif (Georgia) with optional Fraunces, CSS-dot bullets instead of emoji, single-column that stacks cleanly on mobile and in Outlook.</li>
+      <li><span class="k">Brand continuity kept.</span> Same logo, green/cream palette, hero, Hens block and Merricks footer as today — only the arrangement changes, so it still reads as <em>them</em>.</li>
+    </ul>
+  </div>
+
+  <p class="note">
+    <b>Notes for production (Klaviyo):</b> these are design mockups — the real build is laid into Jason's Klaviyo template using table-based, bulletproof buttons and real <code>&lt;img&gt;</code> heroes/products with <code>alt</code> text (the gradients here are placeholders). One nice first-send touch the brand lens suggested: a single Jason-voiced line under the masthead — <em>"We've slimmed these down so it's more of a letter and less of a flyer — same girls, same yard."</em> — so the format change reads as intention, not error. Recommend phasing it in over a send or two (bike method) and watching open/click before retiring the old template.
+  </p>
+</div>
+</body>
+</html>

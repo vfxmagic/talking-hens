@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real example — V2 “Letter from the Farm” · Rat-bait newsletter</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#e7e6e0;padding:26px 10px;font-family:'Poppins',sans-serif}
+  .cap-note{max-width:640px;margin:0 auto 12px;text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9a7d3c;font-weight:600}
+  .frame{max-width:640px;margin:0 auto;box-shadow:0 12px 44px rgba(0,0,0,.16)}
+  .lt { width:640px; max-width:100%; background:#f6f1e4; font-family:'Poppins',sans-serif; color:#34402b; -webkit-font-smoothing:antialiased; }
+  .lt * { box-sizing:border-box; }
+  .lt-top { display:flex; align-items:center; justify-content:space-between; padding:22px 44px 0; }
+  .lt-top img { height:40px; }
+  .lt-top .iss { font-family:'Lora',serif; font-style:italic; font-size:13px; color:#8a7d5e; }
+  .lt-mast { text-align:center; padding:26px 44px 6px; }
+  .lt-kick { font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:#9a7d3c; font-weight:600; margin:0 0 14px; }
+  .lt-mast h1 { font-family:'Lora',serif; font-weight:600; font-size:42px; line-height:1.06; margin:0; letter-spacing:-.015em; color:#2f3b27; }
+  .lt-mast h1 em { font-style:italic; color:#5d7d3a; }
+  .lt-rule { width:48px; height:3px; background:#5d7d3a; margin:22px auto 0; }
+  .lt-hero { margin:30px 44px 0; }
+  .lt-hero img { width:100%; height:280px; object-fit:cover; display:block; border-radius:2px; }
+  .lt-hero .cap { font-family:'Lora',serif; font-style:italic; font-size:12.5px; color:#8a7d5e; text-align:center; margin-top:10px; }
+  .lt-body { padding:34px 64px; }
+  .lt-body p { font-size:15.5px; line-height:1.72; margin:0 0 18px; color:#3d4a32; }
+  .lt-body p.lead { font-size:17px; }
+  .lt-drop::first-letter { font-family:'Lora',serif; font-size:62px; line-height:.78; float:left; padding:6px 12px 0 0; color:#5d7d3a; font-weight:600; }
+  .lt-takeaways{margin:2px 0 18px;padding:0;list-style:none}
+  .lt-takeaways li{font-size:15px;line-height:1.5;margin:0 0 12px;padding-left:24px;position:relative;color:#3d4a32}
+  .lt-takeaways li::before{content:"";position:absolute;left:2px;top:8px;width:7px;height:7px;border-radius:50%;background:#5d7d3a}
+  .lt-sign { font-family:'Lora',serif; font-style:italic; font-size:22px; color:#2f3b27; margin:8px 0 2px; }
+  .lt-sign-sub { font-size:12px; letter-spacing:.04em; color:#8a7d5e; }
+  .lt-divider { display:flex; align-items:center; gap:16px; padding:0 64px; }
+  .lt-divider span { flex:1; height:1px; background:#d9cfb4; }
+  .lt-divider b { font-family:'Lora',serif; color:#9a7d3c; font-size:18px; }
+  .lt-feat { display:grid; grid-template-columns:1fr 1fr; gap:0; margin:34px 44px 0; background:#fffdf6; border:1px solid #e4dcc4; }
+  .lt-feat img { width:100%; height:100%; min-height:230px; object-fit:cover; }
+  .lt-feat .fb { padding:30px 28px; display:flex; flex-direction:column; justify-content:center; }
+  .lt-feat .tag { font-family:'Lora',serif; font-style:italic; color:#9a7d3c; font-size:14px; margin:0 0 10px; }
+  .lt-feat h2 { font-family:'Lora',serif; font-weight:600; font-size:25px; line-height:1.18; margin:0 0 12px; color:#2f3b27; }
+  .lt-feat p { font-size:13.5px; line-height:1.6; color:#5d6a4d; margin:0 0 18px; }
+  .lt-textlink { font-size:13px; letter-spacing:.04em; color:#5d7d3a; font-weight:600; text-decoration:none; border-bottom:1.5px solid #bcd1a0; padding-bottom:2px; align-self:flex-start; }
+  .lt-yard { margin:34px 44px 0; text-align:center; padding:36px 30px; background:#2f3b27; color:#ede7d3; border-radius:2px; }
+  .lt-yard .k { font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:#b6c79a; margin:0 0 14px; font-weight:600; }
+  .lt-yard h2 { font-family:'Lora',serif; font-weight:600; font-size:30px; margin:0 0 10px; color:#fff; line-height:1.1; }
+  .lt-yard p { font-size:14px; color:#cdd6b8; margin:0 auto 24px; max-width:380px; line-height:1.6; }
+  .lt-yard .names { font-family:'Lora',serif; font-style:italic; font-size:16px; color:#dce6c5; margin-bottom:26px; }
+  .lt-cta { display:inline-block; background:#e7a829; color:#2f3b27; font-weight:700; font-size:15px; padding:15px 38px; border-radius:2px; text-decoration:none; letter-spacing:.02em; }
+  .lt-shelf { margin:34px 44px 0; }
+  .lt-shelf .k { font-family:'Lora',serif; font-style:italic; font-size:18px; color:#9a7d3c; margin:0 0 4px; }
+  .lt-shelf .sub { font-size:13px; color:#8a7d5e; margin:0 0 18px; }
+  .lt-shelf-row { display:flex; gap:14px; }
+  .lt-pick { flex:1; text-align:center; }
+  .lt-pick .sw { height:120px; border-radius:2px; display:flex; align-items:center; justify-content:center; margin-bottom:10px; padding:8px; }
+  .lt-pick .sw img{max-height:104px;max-width:100%;object-fit:contain}
+  .lt-pick .nm { font-size:13px; font-weight:600; color:#34402b; line-height:1.25; }
+  .lt-pick .pr { font-family:'Lora',serif; font-style:italic; font-size:14px; color:#5d7d3a; margin-top:2px; }
+  .lt-foot { margin-top:40px; padding:34px 44px; border-top:3px double #d9cfb4; text-align:center; }
+  .lt-foot .fm { font-family:'Lora',serif; font-size:20px; color:#2f3b27; margin:0 0 6px; }
+  .lt-foot p { font-size:12.5px; color:#8a7d5e; margin:3px 0; line-height:1.6; }
+  .lt-foot .links { font-size:11.5px; color:#9a8e6e; margin-top:16px; letter-spacing:.03em; }
+</style></head>
+<body>
+<div class="cap-note">V2 · “Letter from the Farm” — real content: 3 June “rat-bait” newsletter</div>
+<div class="frame"><div class="lt">
+  <div class="lt-top">
+    <img src="https://talkinghens.com.au/cdn/shop/files/Talking_Hens_Logo_Final_No_Tag-1.png?v=1677111420" alt="Talking Hens">
+    <span class="iss">No. 214 · Winter on the Peninsula</span>
+  </div>
+
+  <div class="lt-mast">
+    <p class="lt-kick">Letter from the Farm</p>
+    <h1>The warmest address <em>on the street</em></h1>
+    <div class="lt-rule"></div>
+  </div>
+
+  <div class="lt-hero">
+    <img src="https://talkinghens.com.au/cdn/shop/files/Hero_Banner_2026.jpg?v=1775527509&width=1200" alt="">
+    <p class="cap">Frosty mornings at Merricks — and the coop looks awfully inviting to the locals.</p>
+  </div>
+
+  <div class="lt-body">
+    <p class="lead lt-drop">When the weather turns cold, as it is now, your chicken coop quietly becomes the most appealing address on the street. Warm, dry, and with food on tap, it’s no wonder rats and mice make a beeline for it.</p>
+    <p>When we recently asked what was holding people back from keeping backyard chooks, rodents emerged as the number one concern — ahead of foxes, ahead of the neighbours, ahead of the Council. So I’ve written down everything we’ve learned and researched about keeping them out, the right way.</p>
+    <p style="margin-bottom:10px"><strong>A few things that stood out for me:</strong></p>
+    <ul class="lt-takeaways">
+      <li>The mesh most people trust is doing almost nothing.</li>
+      <li>A mouse can squeeze through a gap about the width of a pen.</li>
+      <li>The rules on rat bait changed in March — and they affect what you’re even allowed to buy.</li>
+    </ul>
+    <p>None of it is hard once you know what actually works, and your flock will be a lot happier for it. We’ve laid the whole lot out in our latest post, including the one rethink on poison every chook keeper should know about this winter.</p>
+    <p class="lt-sign">Warmly, Jason &amp; Giuliana</p>
+    <p class="lt-sign-sub">Talking Hens, Merricks</p>
+  </div>
+
+  <div class="lt-divider"><span></span><b>❧</b><span></span></div>
+
+  <div class="lt-feat">
+    <img src="https://talkinghens.com.au/cdn/shop/files/230424_Talking_Hens_WR-6_copy_2.jpg?v=1684995233&width=600" alt="">
+    <div class="fb">
+      <p class="tag">From the Learning Centre</p>
+      <h2>The new rat-bait rules, explained</h2>
+      <p>What changed in March, why the mesh you trust may be failing, and the one rethink on poison worth knowing before winter sets in.</p>
+      <a class="lt-textlink" href="#">Read the full post</a>
+    </div>
+  </div>
+
+  <div class="lt-yard">
+    <p class="k">In the yard this week</p>
+    <h2>Healthy birds, ready to go home</h2>
+    <p>Hand-raised and health-checked by us. The pick of the flock is on the farm right now.</p>
+    <p class="names">Hy-Line Brown 18-wk · Silkies 18-wk · Sexed Australorp chicks · Hy-Line 2-wk chicks</p>
+    <a class="lt-cta" href="#">Reserve your hens →</a>
+  </div>
+
+  <div class="lt-shelf">
+    <p class="k">On the shelf this week</p>
+    <p class="sub">The short list that keeps feed sealed and the flock cosy.</p>
+    <div class="lt-shelf-row">
+      <div class="lt-pick"><div class="sw" style="background:#eef3e2"><img src="https://cdn.shopify.com/s/files/1/0681/6248/6579/products/Artboard4_5ab49b38-a023-4602-9c5f-796e5fb694c0.png?v=1682343403" alt=""></div><div class="nm">Stainless Steel Feed Bins</div><div class="pr">$165.99</div></div>
+      <div class="lt-pick"><div class="sw" style="background:#e9f1ea"><img src="https://cdn.shopify.com/s/files/1/0681/6248/6579/products/Artboard4_8c665a57-82d9-4911-ae36-409619992333.png?v=1682314125" alt=""></div><div class="nm">Chooktred Feeder</div><div class="pr">$199.99</div></div>
+      <div class="lt-pick"><div class="sw" style="background:#f1ecdc"><img src="https://cdn.shopify.com/s/files/1/0681/6248/6579/files/Untitled_design_8.png?v=1763954463" alt=""></div><div class="nm">Wood Shavings</div><div class="pr">$26.99</div></div>
+    </div>
+  </div>
+
+  <div class="lt-foot">
+    <p class="fm">Talking Hens</p>
+    <p>3590 Frankston-Flinders Road, Merricks VIC 3916</p>
+    <p>Open 7 days, 10am–4pm · 0406 691 231 · talk@talkinghens.com.au</p>
+    <p class="links">Forwarded by a friend? Join the flock · Unsubscribe · View in browser</p>
+  </div>
+</div></div>
+</body></html>

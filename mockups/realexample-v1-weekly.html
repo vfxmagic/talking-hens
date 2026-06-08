@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real example — V1 “The Weekly” · Rat-bait newsletter</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#e7e6e0;padding:26px 10px;font-family:'Poppins',sans-serif}
+  .cap-note{max-width:640px;margin:0 auto 12px;text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7a8a5f;font-weight:600}
+  .frame{max-width:640px;margin:0 auto;box-shadow:0 12px 44px rgba(0,0,0,.16)}
+  .wk { width:640px; max-width:100%; background:#ffffff; font-family:'Poppins',sans-serif; color:#2b3a26; -webkit-font-smoothing:antialiased; }
+  .wk * { box-sizing:border-box; }
+  .wk-bar { background:#3f6a34; color:#eef3e2; text-align:center; font-size:12.5px; letter-spacing:.04em; padding:9px; font-weight:500; }
+  .wk-head { background:#faf6ec; padding:26px 40px 22px; text-align:center; border-bottom:1px solid #e7e0cc; }
+  .wk-logo { height:54px; width:auto; }
+  .wk-issue { margin-top:14px; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:#7c8a6a; font-weight:600; }
+  .wk-hero { position:relative; }
+  .wk-hero img { display:block; width:100%; height:300px; object-fit:cover; }
+  .wk-hero-cap { position:absolute; left:0; right:0; bottom:0; padding:24px 40px; background:linear-gradient(to top, rgba(28,40,22,.82), rgba(28,40,22,0)); color:#fff; }
+  .wk-hero-cap h1 { font-size:30px; line-height:1.12; font-weight:700; margin:0; letter-spacing:-.01em; max-width:460px; }
+  .wk-sec { padding:34px 40px; }
+  .wk-eye { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#5d8a3f; font-weight:700; margin:0 0 12px; }
+  .wk-note { background:#f3f6ea; border:1px solid #e2e9d3; border-radius:14px; padding:24px 26px; }
+  .wk-note p { margin:0 0 12px; font-size:15px; line-height:1.62; color:#3a4733; }
+  .wk-note p:last-child { margin-bottom:0; }
+  .wk-sig { font-weight:600; color:#3f6a34; }
+  .wk-h2 { font-size:22px; font-weight:700; margin:0 0 4px; letter-spacing:-.01em; }
+  .wk-lede { font-size:14px; color:#6f7a62; margin:0 0 20px; line-height:1.55; }
+  .wk-art { display:grid; grid-template-columns:1.1fr 1fr; gap:0; border:1px solid #e2e9d3; border-radius:16px; overflow:hidden; }
+  .wk-art img { width:100%; height:100%; min-height:180px; object-fit:cover; display:block; }
+  .wk-art-body { padding:22px 24px; display:flex; flex-direction:column; justify-content:center; }
+  .wk-tag { font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:#a08a3a; font-weight:700; margin:0 0 8px; }
+  .wk-art-body h3 { font-size:18px; line-height:1.25; margin:0 0 8px; font-weight:600; }
+  .wk-art-body p { font-size:13px; color:#6f7a62; margin:0 0 14px; line-height:1.5; }
+  .wk-link { color:#3f6a34; font-weight:600; font-size:13.5px; text-decoration:none; }
+  .wk-birds { background:#2f5226; border-radius:18px; padding:30px 32px; color:#eef3e2; text-align:center; }
+  .wk-birds h2 { font-size:25px; margin:0 0 6px; font-weight:700; letter-spacing:-.01em; color:#fff; }
+  .wk-birds .wk-sub { color:#bcd3a6; font-size:14px; margin:0 0 20px; }
+  .wk-birds-row { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:22px; }
+  .wk-bird { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); border-radius:12px; padding:16px 10px; }
+  .wk-bird .nm { font-weight:600; font-size:14px; color:#fff; }
+  .wk-bird .pr { font-size:12.5px; color:#bcd3a6; margin-top:3px; }
+  .wk-btn { display:inline-block; background:#f4b400; color:#2f3a1f; font-weight:700; font-size:15px; padding:14px 34px; border-radius:999px; text-decoration:none; letter-spacing:.01em; }
+  .wk-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .wk-card { border:1px solid #e7e0cc; border-radius:14px; overflow:hidden; }
+  .wk-thumb { height:130px; display:flex; align-items:center; justify-content:center; padding:8px; }
+  .wk-thumb img{max-height:114px;max-width:100%;object-fit:contain}
+  .wk-card-b { padding:14px 16px; }
+  .wk-card-b .nm { font-size:13.5px; font-weight:600; margin:0; line-height:1.2;}
+  .wk-card-b .sb { font-size:11.5px; color:#8a9479; margin:2px 0 0; }
+  .wk-card-foot { display:flex; align-items:center; justify-content:space-between; margin-top:12px; }
+  .wk-price { font-weight:700; font-size:15px; color:#3f6a34; }
+  .wk-mini { font-size:12px; font-weight:600; color:#3f6a34; border:1.5px solid #cdd9bc; border-radius:999px; padding:6px 14px; text-decoration:none; }
+  .wk-foot { background:#2b3a26; color:#cdd9bc; padding:34px 40px; text-align:center; }
+  .wk-foot img { height:40px; margin-bottom:16px; filter:brightness(0) invert(1); opacity:.92; }
+  .wk-foot p { margin:4px 0; font-size:12.5px; line-height:1.6; }
+  .wk-soc { display:flex; gap:10px; justify-content:center; margin:16px 0; }
+  .wk-soc span { width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.25); display:flex; align-items:center; justify-content:center; font-size:12px; color:#cdd9bc; font-weight:600; }
+  .wk-fine { font-size:11px; color:#7d8a6c; margin-top:14px; }
+  .wk-rule { height:1px; background:#e7e0cc; margin:0 40px; }
+</style></head>
+<body>
+<div class="cap-note">V1 · “The Weekly” — real content: 3 June “rat-bait” newsletter</div>
+<div class="frame"><div class="wk">
+  <div class="wk-bar">🐓 Open 7 days · 10am–4pm · Merricks VIC — your weekly cluck is here</div>
+  <div class="wk-head">
+    <img class="wk-logo" src="https://talkinghens.com.au/cdn/shop/files/Talking_Hens_Logo_Final_No_Tag-1.png?v=1677111420" alt="Talking Hens">
+    <div class="wk-issue">The Weekly · Winter 2026</div>
+  </div>
+  <div class="wk-hero">
+    <img src="https://talkinghens.com.au/cdn/shop/files/Hero_Banner_2026.jpg?v=1775527509&width=1200" alt="">
+    <div class="wk-hero-cap"><h1>What the new rat-bait rules mean for your flock</h1></div>
+  </div>
+
+  <div class="wk-sec">
+    <p class="wk-eye">A note from Jason</p>
+    <div class="wk-note">
+      <p>Hi Kerryn — when the weather turns cold, as it is now, your chicken coop quietly becomes the most appealing address on the street. Warm, dry, and with food on tap, it’s no wonder rats and mice make a beeline for it.</p>
+      <p>When we recently asked what was holding people back from keeping backyard chooks, rodents came out the number one concern — ahead of foxes, ahead of the neighbours, ahead of the Council. So I’ve written down everything we’ve learned about keeping them out, the right way.</p>
+      <p class="wk-sig">— Jason and Giuliana</p>
+    </div>
+  </div>
+
+  <div class="wk-rule"></div>
+
+  <div class="wk-sec">
+    <p class="wk-eye">From the Learning Centre</p>
+    <div class="wk-art">
+      <img src="https://talkinghens.com.au/cdn/shop/files/230424_Talking_Hens_WR-6_copy_2.jpg?v=1684995233&width=600" alt="">
+      <div class="wk-art-body">
+        <p class="wk-tag">This week’s read · 6 min</p>
+        <h3>Keeping rats &amp; mice out — the right way</h3>
+        <p>The mesh most people trust is doing almost nothing, a mouse can squeeze through a gap the width of a pen, and the rat-bait rules changed in March. Here’s what actually works this winter.</p>
+        <a class="wk-link" href="#">Read the full post →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wk-sec" style="padding-top:0">
+    <div class="wk-birds">
+      <h2>In the yard this week</h2>
+      <p class="wk-sub">Healthy, hand-raised birds — ready to go home today.</p>
+      <div class="wk-birds-row">
+        <div class="wk-bird"><div class="nm">Hy-Line Brown</div><div class="pr">18-week point-of-lay</div></div>
+        <div class="wk-bird"><div class="nm">Silkies</div><div class="pr">18-week-olds</div></div>
+        <div class="wk-bird"><div class="nm">Sexed Australorp</div><div class="pr">chicks</div></div>
+        <div class="wk-bird"><div class="nm">Hy-Line</div><div class="pr">2-week chicks</div></div>
+      </div>
+      <a class="wk-btn" href="#">Reserve your hens →</a>
+    </div>
+  </div>
+
+  <div class="wk-sec" style="padding-top:0">
+    <h2 class="wk-h2">Featured this week</h2>
+    <p class="wk-lede">The gear that keeps feed sealed, dry and out of reach of unwanted visitors.</p>
+    <div class="wk-grid">
+      <div class="wk-card">
+        <div class="wk-thumb" style="background:#eef3e2"><img src="https://cdn.shopify.com/s/files/1/0681/6248/6579/products/Artboard4_5ab49b38-a023-4602-9c5f-796e5fb694c0.png?v=1682343403" alt=""></div>
+        <div class="wk-card-b"><p class="nm">Stainless Steel Feed Storage Bins</p><p class="sb">Rodent-proof, airtight</p><div class="wk-card-foot"><span class="wk-price">$165.99</span><a class="wk-mini" href="#">Shop</a></div></div>
+      </div>
+      <div class="wk-card">
+        <div class="wk-thumb" style="background:#e9f1ea"><img src="https://cdn.shopify.com/s/files/1/0681/6248/6579/products/Artboard4_8c665a57-82d9-4911-ae36-409619992333.png?v=1682314125" alt=""></div>
+        <div class="wk-card-b"><p class="nm">Chooktred Feeder</p><p class="sb">Treadle feeder — vermin-safe</p><div class="wk-card-foot"><span class="wk-price">$199.99</span><a class="wk-mini" href="#">Shop</a></div></div>
+      </div>
+      <div class="wk-card">
+        <div class="wk-thumb" style="background:#f1ecdc"><img src="https://cdn.shopify.com/s/files/1/0681/6248/6579/files/Untitled_design_8.png?v=1763954463" alt=""></div>
+        <div class="wk-card-b"><p class="nm">Wood Shavings</p><p class="sb">Warm, dry bedding</p><div class="wk-card-foot"><span class="wk-price">$26.99</span><a class="wk-mini" href="#">Shop</a></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wk-foot">
+    <img src="https://talkinghens.com.au/cdn/shop/files/Talking_Hens_Logo_Final_No_Tag-1.png?v=1677111420" alt="Talking Hens">
+    <p>3590 Frankston-Flinders Road, Merricks VIC 3916</p>
+    <p>0406 691 231 · talk@talkinghens.com.au</p>
+    <div class="wk-soc"><span>f</span><span>ig</span><span>in</span><span>yt</span></div>
+    <p class="wk-fine">You’re getting this because you joined the flock. Unsubscribe · View in browser</p>
+  </div>
+</div></div>
+</body></html>

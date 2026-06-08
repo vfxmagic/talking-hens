@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talking Hens — 3 designs × a real newsletter</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#3f6a34;--ink:#23271f;--muted:#5b605c;--bg:#e7e6e0;--gold:#b8924a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);font-family:'Poppins',sans-serif;font-weight:300;color:var(--ink);padding:30px 18px 60px}
+  .wrap{max-width:1200px;margin:0 auto}
+  h1{font-weight:600;font-size:25px;color:var(--green);margin:0 0 4px}
+  .sub{color:var(--muted);font-size:15px;margin:0 0 8px;line-height:1.5}
+  .sub b{font-weight:600;color:var(--ink)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+  .col{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.08);display:flex;flex-direction:column}
+  .col.best{outline:3px solid var(--gold)}
+  .ch{padding:13px 16px;border-bottom:1px solid #efeee9}
+  .ch b{font-weight:600;font-size:15px;display:block;color:var(--green)}
+  .ch.best b{color:var(--gold)}
+  .ch span{font-size:12.5px;color:var(--muted);line-height:1.4;display:block;margin-top:3px}
+  .scroll{height:720px;overflow:hidden;background:#e7e6e0}
+  iframe{width:100%;height:1700px;border:0;transform:scale(.99);transform-origin:top center}
+  .open{display:block;text-align:center;padding:10px;font-size:12px;color:var(--green);text-decoration:none;border-top:1px solid #efeee9;font-weight:500}
+  .note{font-size:13.5px;color:var(--muted);margin-top:24px;line-height:1.7;background:#fff;border-radius:10px;padding:18px 22px;box-shadow:0 4px 16px rgba(0,0,0,.05)}
+  .note b{color:var(--ink)}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div class="wrap">
+  <h1>Three designs, one real newsletter</h1>
+  <p class="sub">Your three design directions — populated with a <b>real Kerryn newsletter</b> (3 June: “What the new rat-bait rules mean for your flock”). Same real copy, real “Hens Available” list and real product photos in all three — only the <b>design language</b> changes. Scroll each panel; click to open full.</p>
+
+  <div class="grid">
+    <div class="col">
+      <div class="ch"><b>V1 · The Weekly</b><span>Faithful to their website — green + cream, clean grid. Safest / most familiar.</span></div>
+      <div class="scroll"><iframe src="realexample-v1-weekly.html" scrolling="no"></iframe></div>
+      <a class="open" href="realexample-v1-weekly.html" target="_blank">Open full ↗</a>
+    </div>
+    <div class="col best">
+      <div class="ch best"><b>V2 · Letter from the Farm ★</b><span>Editorial, story-first, Lora serif. The team’s pick — best protects Jason’s voice.</span></div>
+      <div class="scroll"><iframe src="realexample-v2-letter.html" scrolling="no"></iframe></div>
+      <a class="open" href="realexample-v2-letter.html" target="_blank">Open full ↗</a>
+    </div>
+    <div class="col">
+      <div class="ch"><b>V3 · The Coop</b><span>Bold, playful, Fredoka + sticker badges. Highest energy / most “scroll-stopping”.</span></div>
+      <div class="scroll"><iframe src="realexample-v3-coop.html" scrolling="no"></iframe></div>
+      <a class="open" href="realexample-v3-coop.html" target="_blank">Open full ↗</a>
+    </div>
+  </div>
+
+  <p class="note">
+    <b>How these map to the team’s earlier verdict:</b> V1 = the robust/familiar baseline; <b>V2 “Letter from the Farm” is the direction the crew recommended</b> (story-above-the-sell protects the voice that actually sells live birds); V3 is the high-energy option — great for events, sales and younger audiences, but the bold styling fights the warm, trust-first brand if used every week. A sensible play: <b>V2 as the weekly workhorse, V3 kept in the back pocket</b> for events/promos.<br><br>
+    <b>Note:</b> these are design mockups rendered in the browser with Talking Hens’ real CDN images. The production send gets laid into Jason’s <b>Klaviyo</b> template with table-based bulletproof buttons — and a few of these flourishes (V2’s drop cap, V3’s Fredoka headings + hard shadows) need email-safe fallbacks, which we handle at build time.
+  </p>
+</div>
+</body></html>

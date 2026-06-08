@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real example — V3 “The Coop” · Rat-bait newsletter</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#e7e6e0;padding:26px 10px;font-family:'Poppins',sans-serif}
+  .cap-note{max-width:640px;margin:0 auto 12px;text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#b98700;font-weight:600;font-family:'Fredoka',sans-serif}
+  .frame{max-width:640px;margin:0 auto;box-shadow:0 12px 44px rgba(0,0,0,.16)}
+  .cp { width:640px; max-width:100%; background:#fbf7ec; font-family:'Poppins',sans-serif; color:#243018; -webkit-font-smoothing:antialiased; }
+  .cp * { box-sizing:border-box; }
+  .cp-bar { background:#243018; color:#f4b400; text-align:center; font-size:12.5px; letter-spacing:.06em; padding:10px; font-weight:600; font-family:'Fredoka',sans-serif; }
+  .cp-head { display:flex; align-items:center; justify-content:space-between; padding:20px 34px; background:#fbf7ec; }
+  .cp-head img { height:44px; }
+  .cp-badge { font-family:'Fredoka',sans-serif; font-weight:600; background:#3f6a34; color:#fff; font-size:12px; padding:7px 14px; border-radius:999px; white-space:nowrap; }
+  .cp-hero { background:#5d9b3f; padding:40px 36px 0; position:relative; overflow:hidden; }
+  .cp-hero h1 { font-family:'Fredoka',sans-serif; font-weight:600; font-size:46px; line-height:.98; color:#fff; margin:0; letter-spacing:-.01em; position:relative; }
+  .cp-hero h1 .pop { color:#ffd64a; }
+  .cp-hero p { font-size:15px; color:#e7f2dc; margin:14px 0 24px; max-width:400px; line-height:1.5; position:relative; }
+  .cp-hero img { display:block; width:100%; height:200px; object-fit:cover; border-radius:18px 18px 0 0; position:relative; border:3px solid #fff; border-bottom:none; }
+  .cp-pill { display:inline-block; font-family:'Fredoka',sans-serif; font-weight:500; background:#ffd64a; color:#3a2f00; font-size:13px; padding:6px 16px; border-radius:999px; margin-bottom:18px; position:relative; white-space:nowrap; }
+  .cp-sec { padding:30px 34px; }
+  .cp-jason { background:#fff; border:3px solid #243018; border-radius:22px; padding:26px 28px; box-shadow:6px 6px 0 #243018; }
+  .cp-jason .lbl { font-family:'Fredoka',sans-serif; font-weight:600; font-size:14px; color:#3f6a34; margin:0 0 10px; display:flex; align-items:center; gap:8px; }
+  .cp-jason .lbl b { background:#f4b400; color:#243018; width:30px; height:30px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:15px; }
+  .cp-jason p { font-size:15px; line-height:1.62; margin:0 0 12px; color:#33402a; }
+  .cp-jason p:last-child { margin-bottom:0; }
+  .cp-jason .sig { font-family:'Fredoka',sans-serif; font-weight:600; color:#3f6a34; }
+  .cp-h2 { font-family:'Fredoka',sans-serif; font-weight:600; font-size:30px; margin:0 0 4px; line-height:1.04; }
+  .cp-h2 .u { background:linear-gradient(transparent 62%, #ffd64a 62%); }
+  .cp-sub { font-size:14px; color:#6f7a5e; margin:0 0 20px; }
+  .cp-birds { background:#243018; border-radius:24px; padding:30px 30px 32px; text-align:center; }
+  .cp-birds .k { font-family:'Fredoka',sans-serif; font-weight:500; color:#ffd64a; font-size:14px; letter-spacing:.04em; margin:0 0 6px; }
+  .cp-birds h2 { font-family:'Fredoka',sans-serif; font-weight:600; font-size:32px; color:#fff; margin:0 0 22px; line-height:1.02; }
+  .cp-birds-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px; }
+  .cp-egg { background:#33442a; border-radius:16px; padding:18px 8px; }
+  .cp-egg .e { width:34px; height:44px; margin:0 auto 10px; border-radius:50% 50% 50% 50%/60% 60% 40% 40%; }
+  .cp-egg .nm { font-family:'Fredoka',sans-serif; font-weight:500; color:#fff; font-size:14.5px; }
+  .cp-egg .d { font-size:11.5px; color:#a7c089; margin-top:2px; }
+  .cp-birds .extra{font-size:12.5px;color:#a7c089;margin:0 0 20px}
+  .cp-btn { display:inline-block; font-family:'Fredoka',sans-serif; font-weight:600; background:#f4b400; color:#243018; font-size:17px; padding:15px 40px; border-radius:999px; text-decoration:none; box-shadow:0 5px 0 #b98700; }
+  .cp-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .cp-card { background:#fff; border:3px solid #243018; border-radius:20px; overflow:hidden; box-shadow:4px 4px 0 #243018; }
+  .cp-thumb { height:140px; display:flex; align-items:center; justify-content:center; padding:10px; }
+  .cp-thumb img{max-height:120px;max-width:100%;object-fit:contain}
+  .cp-card-b { padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .cp-card-b .nm { font-family:'Fredoka',sans-serif; font-weight:500; font-size:14.5px; line-height:1.1; }
+  .cp-card-b .pr { font-family:'Fredoka',sans-serif; font-weight:600; color:#3f6a34; font-size:15px; white-space:nowrap; }
+  .cp-strip { display:flex; align-items:center; gap:20px; background:#f4b400; border-radius:24px; padding:24px 28px; }
+  .cp-strip img { width:140px; height:120px; object-fit:cover; border-radius:14px; border:3px solid #243018; }
+  .cp-strip h3 { font-family:'Fredoka',sans-serif; font-weight:600; font-size:24px; margin:0 0 6px; color:#3a2f00; line-height:1.05; }
+  .cp-strip p { font-size:13px; color:#5b4f1a; margin:0 0 12px; line-height:1.45; }
+  .cp-strip .save { font-family:'Fredoka',sans-serif; font-weight:600; background:#243018; color:#ffd64a; font-size:14px; padding:8px 18px; border-radius:999px; display:inline-block; }
+  .cp-foot { background:#243018; color:#bcd3a0; padding:32px 34px; text-align:center; border-radius:30px 30px 0 0; margin-top:8px; }
+  .cp-foot img { height:38px; filter:brightness(0) invert(1); opacity:.95; margin-bottom:14px; }
+  .cp-foot p { font-size:12.5px; margin:3px 0; line-height:1.6; }
+  .cp-foot .soc { display:flex; gap:9px; justify-content:center; margin:14px 0; }
+  .cp-foot .soc span { font-family:'Fredoka',sans-serif; font-weight:500; width:36px; height:36px; border-radius:50%; background:#33442a; color:#ffd64a; display:flex; align-items:center; justify-content:center; font-size:12px; }
+  .cp-foot .fine { font-size:11px; color:#8aa06f; margin-top:12px; }
+</style></head>
+<body>
+<div class="cap-note">V3 · “The Coop” — real content: 3 June “rat-bait” newsletter</div>
+<div class="frame"><div class="cp">
+  <div class="cp-bar">🥚 THE COOP · YOUR WEEKLY CLUCK · ISSUE 214</div>
+
+  <div class="cp-head">
+    <img src="https://talkinghens.com.au/cdn/shop/files/Talking_Hens_Logo_Final_No_Tag-1.png?v=1677111420" alt="Talking Hens">
+    <span class="cp-badge">Winter Edition</span>
+  </div>
+
+  <div class="cp-hero">
+    <span style="position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.12);top:-40px;right:-30px"></span>
+    <span class="cp-pill">❄ Brrr — and the mice know it</span>
+    <h1>Keep the coop<br><span class="pop">critter-free!</span></h1>
+    <p>When it’s cold, your coop is the comfiest address on the street — here’s how to keep the freeloaders out.</p>
+    <img src="https://talkinghens.com.au/cdn/shop/files/Hero_Banner_2026.jpg?v=1775527509&width=1200" alt="">
+  </div>
+
+  <div class="cp-sec">
+    <div class="cp-jason">
+      <p class="lbl"><b>J</b> Straight from Jason</p>
+      <p>G’day flock! When the weather turns cold, your chicken coop quietly becomes the most appealing address on the street — warm, dry, and with food on tap. No wonder rats and mice make a beeline for it.</p>
+      <p>When we asked what was holding people back from keeping chooks, rodents came out the number one worry — ahead of foxes, the neighbours, even the Council. So I’ve written down everything we’ve learned about keeping them out, the right way.</p>
+      <p class="sig">— Jason &amp; Giuliana 🐓</p>
+    </div>
+  </div>
+
+  <div class="cp-sec" style="padding-top:0">
+    <div class="cp-birds">
+      <p class="k">🐔 In the yard this week</p>
+      <h2>Pick your new<br>best girls</h2>
+      <div class="cp-birds-row">
+        <div class="cp-egg"><div class="e" style="background:#c98a5a"></div><div class="nm">Hy-Line Brown</div><div class="d">18-wk layers</div></div>
+        <div class="cp-egg"><div class="e" style="background:#f3ead9"></div><div class="nm">Silkies</div><div class="d">18-wk fluffballs</div></div>
+        <div class="cp-egg"><div class="e" style="background:#3a3a3a"></div><div class="nm">Australorp</div><div class="d">sexed chicks</div></div>
+      </div>
+      <p class="extra">Plus Hy-Line chicks at 2 weeks old 🐥</p>
+      <a class="cp-btn" href="#">Reserve your hens →</a>
+    </div>
+  </div>
+
+  <div class="cp-sec" style="padding-top:0">
+    <h2 class="cp-h2"><span class="u">Critter-proof picks</span> 🛡️</h2>
+    <p class="cp-sub">Seal the feed, dry the bedding — the team’s winter defence kit.</p>
+    <div class="cp-grid">
+      <div class="cp-card"><div class="cp-thumb" style="background:#fff0c2"><img src="https://cdn.shopify.com/s/files/1/0681/6248/6579/products/Artboard4_5ab49b38-a023-4602-9c5f-796e5fb694c0.png?v=1682343403" alt=""></div><div class="cp-card-b"><span class="nm">Feed Storage Bins</span><span class="pr">$165.99</span></div></div>
+      <div class="cp-card"><div class="cp-thumb" style="background:#d7ead8"><img src="https://cdn.shopify.com/s/files/1/0681/6248/6579/products/Artboard4_8c665a57-82d9-4911-ae36-409619992333.png?v=1682314125" alt=""></div><div class="cp-card-b"><span class="nm">Chooktred Feeder</span><span class="pr">$199.99</span></div></div>
+      <div class="cp-card"><div class="cp-thumb" style="background:#f6ddc9"><img src="https://cdn.shopify.com/s/files/1/0681/6248/6579/files/Untitled_design_8.png?v=1763954463" alt=""></div><div class="cp-card-b"><span class="nm">Wood Shavings</span><span class="pr">$26.99</span></div></div>
+    </div>
+  </div>
+
+  <div class="cp-sec" style="padding-top:0">
+    <div class="cp-strip">
+      <img src="https://talkinghens.com.au/cdn/shop/files/230424_Talking_Hens_WR-6_copy_2.jpg?v=1684995233&width=480" alt="">
+      <div>
+        <h3>The new rat-bait rules</h3>
+        <p>The mesh trick most people get wrong, plus the one rethink on poison every keeper should know this winter.</p>
+        <span class="save">Read the full post →</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cp-foot">
+    <img src="https://talkinghens.com.au/cdn/shop/files/Talking_Hens_Logo_Final_No_Tag-1.png?v=1677111420" alt="Talking Hens">
+    <p>3590 Frankston-Flinders Road, Merricks VIC 3916</p>
+    <p>Open 7 days, 10am–4pm · 0406 691 231</p>
+    <div class="soc"><span>f</span><span>ig</span><span>in</span><span>yt</span></div>
+    <p class="fine">You joined the flock 🐥 · Unsubscribe · View in browser</p>
+  </div>
+</div></div>
+</body></html>
