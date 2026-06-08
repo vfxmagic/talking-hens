@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-AU"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Talking Hens — Newsletter &amp; Marketing Concepts</title>
+<title>Talking Hens — Marketing Concepts</title>
 <meta name="robots" content="noindex">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -13,27 +13,35 @@
   .top .logo{width:72px;height:72px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none}
   .top .logo img{width:100%;height:100%;object-fit:contain;padding:8px}
   .ey{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#bfe0cf;font-weight:600;margin:0 0 6px}
-  .top h1{margin:0;font-size:28px;font-weight:700;letter-spacing:-.01em}
+  .top h1{margin:0;font-size:28px;font-weight:700;letter-spacing:-.01em;color:#fff}
   .top p{margin:6px 0 0;color:#d8ece0;font-size:14.5px;max-width:560px;line-height:1.5}
   .wrap{max-width:1020px;margin:0 auto;padding:0 32px}
   .lead{margin:30px auto 4px;max-width:1020px;padding:0 32px;font-size:15px;color:var(--muted);line-height:1.6}
-  .sec{max-width:1020px;margin:30px auto 14px;padding:0 32px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
-  .ideas{max-width:1020px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px}
-  .idea{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(0,0,0,.03)}
-  .idea .thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:34px;border-bottom:1px solid var(--line)}
+  .sec{max-width:1020px;margin:32px auto 14px;padding:0 32px;display:flex;align-items:baseline;gap:12px}
+  .sec h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0}
+  .sec .ln{flex:1;height:1px;background:var(--line)}
+  .ideas{max-width:1020px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+  .idea{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(0,0,0,.03);text-decoration:none;color:inherit;transition:.15s}
+  a.idea:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(0,0,0,.10);border-color:#cfddd2}
+  .idea .thumb{height:118px;display:flex;align-items:center;justify-content:center;font-size:34px;border-bottom:1px solid var(--line)}
   .idea .b{padding:20px 22px;display:flex;flex-direction:column;flex:1}
   .idea h3{margin:0 0 6px;font-size:17px;font-weight:600}
   .idea p{margin:0 0 16px;font-size:13.5px;color:var(--muted);line-height:1.55;flex:1}
   .st{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:12px;align-self:flex-start}
   .st.ready{background:#e6f3ec;color:#2f6b4f}
-  .st.soon{background:#fbf2dd;color:#9a7423}
+  .st.live{background:#e7eefb;color:#2456b8}
   .links{display:flex;flex-wrap:wrap;gap:8px}
   .links a{font-size:12.5px;font-weight:600;text-decoration:none;color:var(--green);border:1.5px solid #cfddd2;border-radius:999px;padding:7px 14px}
   .links a:hover{background:#eef4ef}
   .links a.primary{background:var(--green);color:#fff;border-color:var(--green)}
   .links a.primary:hover{background:var(--green-d)}
-  .links span.soon{font-size:12.5px;color:#a7aca3}
-  .foot{max-width:1020px;margin:24px auto 0;padding:24px 32px 50px;color:#9aa097;font-size:12.5px;line-height:1.6;border-top:1px solid var(--line)}
+  .go{font-size:13px;font-weight:600;color:var(--green)}
+  .banner{max-width:1020px;margin:14px auto 0;padding:0 32px}
+  .banner .in{background:linear-gradient(120deg,#2f6b4f,#3f8a64);border-radius:16px;padding:24px 26px;color:#fff;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .banner h3{margin:0;font-size:19px;font-weight:700}
+  .banner p{margin:4px 0 0;font-size:13.5px;color:#dcefe3;flex:1;min-width:240px}
+  .banner a{background:#fff;color:#235139;text-decoration:none;font-weight:700;font-size:14px;padding:12px 24px;border-radius:999px;white-space:nowrap}
+  .foot{max-width:1020px;margin:30px auto 0;padding:24px 32px 50px;color:#9aa097;font-size:12.5px;line-height:1.6;border-top:1px solid var(--line)}
   .foot b{color:var(--ink)}
 </style></head>
 <body>
@@ -41,37 +49,42 @@
     <div class="logo"><img src="https://talkinghens.com.au/cdn/shop/files/Talking_Hens_Logo_Final_No_Tag-1.png?v=1677111420" alt="Talking Hens"></div>
     <div>
       <p class="ey">Prepared for Talking Hens</p>
-      <h1>Newsletter &amp; marketing concepts</h1>
-      <p>A few ideas we’ve put together for you. Click any card to open a live preview.</p>
+      <h1>Marketing concepts</h1>
+      <p>Everything in one place — your newsletter, website, social and brand. Click any card to open a live preview.</p>
     </div>
   </div></div>
 
-  <p class="lead">We’ve started with the <b>weekly newsletter</b> — built so it can run almost on its own, in your voice, with your products and birds dropped in fresh each week. Here are three design directions to choose from. Below that are a few other ideas we’d love to explore together.</p>
+  <p class="lead">We’ve pulled together a full picture of what Talking Hens could look like across every channel — all working previews you can click through, not just pictures. Start with the newsletter, then explore the brand &amp; digital suite below.</p>
 
-  <div class="sec">Weekly newsletter · three designs</div>
+  <div class="sec"><h2>Weekly newsletter · three designs</h2><span class="ln"></span></div>
   <div class="ideas">
-    <div class="idea">
+    <a class="idea" href="mockups/realexamples-index.html" target="_blank" rel="noopener">
       <div class="thumb" style="background:#eef4ef">📰</div>
       <div class="b">
         <span class="st ready">Live preview · pick your favourite</span>
-        <h3>Choose your look</h3>
-        <p>Each shows a real issue end to end, with every link working. Same content — three personalities. Open them and tell us which feels most “Talking Hens”.</p>
-        <div class="links">
-          <a class="primary" href="mockups/realexamples-index.html" target="_blank" rel="noopener">Compare all three</a>
-          <a href="mockups/weekly-newsletter-full.html" target="_blank" rel="noopener">The Weekly</a>
-          <a href="mockups/letter-full.html" target="_blank" rel="noopener">Letter from the Farm</a>
-          <a href="mockups/coop-full.html" target="_blank" rel="noopener">The Coop</a>
-        </div>
+        <h3>Weekly newsletter</h3>
+        <p>Three design directions, each a real issue end to end with every link working. Same content, three personalities — open them and tell us which feels most “Talking Hens”.</p>
+        <span class="go">Compare all three →</span>
       </div>
-    </div>
+    </a>
+    <a class="idea" href="mockups/weekly-newsletter-full.html" target="_blank" rel="noopener"><div class="thumb" style="background:#f3f6ea">📗</div><div class="b"><span class="st ready">Live</span><h3>“The Weekly”</h3><p>Faithful to your current look — green &amp; cream, clean and familiar.</p><span class="go">Open →</span></div></a>
+    <a class="idea" href="mockups/letter-full.html" target="_blank" rel="noopener"><div class="thumb" style="background:#f6f1e4">✍️</div><div class="b"><span class="st ready">Live</span><h3>“Letter from the Farm”</h3><p>Warm and editorial — reads like a personal note from Jason.</p><span class="go">Open →</span></div></a>
+    <a class="idea" href="mockups/coop-full.html" target="_blank" rel="noopener"><div class="thumb" style="background:#fbf7ec">🐓</div><div class="b"><span class="st ready">Live</span><h3>“The Coop”</h3><p>Bright, bold and playful — high energy, great for events.</p><span class="go">Open →</span></div></a>
   </div>
 
-  <div class="sec">Other ideas we’d love to explore</div>
+  <div class="banner"><div class="in">
+    <span style="font-size:30px">✨</span>
+    <p><b style="color:#fff;font-size:19px">The Brand Suite</b><br>One interactive board with your website, social, brand kit and customer tools — all in your colours.</p>
+    <a href="brand-suite.html" target="_blank" rel="noopener">Open the full suite →</a>
+  </div></div>
+
+  <div class="sec"><h2>Brand &amp; digital suite</h2><span class="ln"></span></div>
   <div class="ideas">
-    <div class="idea"><div class="thumb" style="background:#f3eee4">🖥️</div><div class="b"><span class="st soon">Concept</span><h3>Website refresh</h3><p>A cleaner, faster storefront — sharper product pages and a stronger “hens for sale” journey, built mobile-first.</p><div class="links"><span class="soon">Preview coming soon</span></div></div></div>
-    <div class="idea"><div class="thumb" style="background:#eef0f3">📱</div><div class="b"><span class="st soon">Concept</span><h3>Social media</h3><p>Weekly Instagram &amp; Facebook posts from the same content library — breed spotlights, care tips, behind-the-farm moments.</p><div class="links"><span class="soon">Preview coming soon</span></div></div></div>
-    <div class="idea"><div class="thumb" style="background:#f0eef6">✉️</div><div class="b"><span class="st soon">Concept</span><h3>Automated emails</h3><p>Friendly behind-the-scenes flows: a warm welcome for new subscribers, gentle reminders, and after-sale care tips.</p><div class="links"><span class="soon">Preview coming soon</span></div></div></div>
-    <div class="idea"><div class="thumb" style="background:#f4eee9">🎨</div><div class="b"><span class="st soon">Concept</span><h3>Brand polish</h3><p>Tighten the look across every channel so it all feels like one warm, expert Talking Hens.</p><div class="links"><span class="soon">Preview coming soon</span></div></div></div>
+    <a class="idea" href="brand-suite.html" target="_blank" rel="noopener"><div class="thumb" style="background:#f3eee4">🖥️</div><div class="b"><span class="st live">Live preview</span><h3>Website redesign</h3><p>A cleaner, faster homepage — sharper product cards and a stronger “hens for sale” journey.</p><span class="go">View in the suite →</span></div></a>
+    <a class="idea" href="brand-suite.html" target="_blank" rel="noopener"><div class="thumb" style="background:#eef0f3">📱</div><div class="b"><span class="st live">Live preview</span><h3>Social media</h3><p>An Instagram grid &amp; post and a Facebook page, all in a consistent Talking Hens voice.</p><span class="go">View in the suite →</span></div></a>
+    <a class="idea" href="brand-suite.html" target="_blank" rel="noopener"><div class="thumb" style="background:#eef4ef">🧭</div><div class="b"><span class="st live">Interactive</span><h3>“Start Your Flock” quiz</h3><p>A friendly quiz that guides nervous first-timers to the right hens — turning browsers into buyers.</p><span class="go">Try it →</span></div></a>
+    <a class="idea" href="brand-suite.html" target="_blank" rel="noopener"><div class="thumb" style="background:#f0eef6">🧮</div><div class="b"><span class="st live">Interactive</span><h3>Feed calculator</h3><p>A simple tool that tells customers exactly how much feed they need — helpful, and it sells feed.</p><span class="go">Try it →</span></div></a>
+    <a class="idea" href="brand-suite.html" target="_blank" rel="noopener"><div class="thumb" style="background:#f4eee9">🎨</div><div class="b"><span class="st live">Live preview</span><h3>Brand kit</h3><p>Colours, type and logo usage that tie every channel — newsletter, web and social — together.</p><span class="go">View in the suite →</span></div></a>
   </div>
 
   <div class="foot">
