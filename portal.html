@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talking Hens — Marketing Portal</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1c241d;--paper:#f4f3ee;--card:#fff;--green:#3f6a34;--green-d:#2f5226;--leaf:#5d9b3f;--muted:#6b716a;--line:#e6e3d8;--cream:#faf6ec;--yolk:#f4b400;--blue:#2456b8}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);font-family:'Inter',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600}
+  .demo-flag{background:#1c241d;color:#cfe0c6;text-align:center;font-size:12px;padding:6px;letter-spacing:.03em}
+  .demo-flag b{color:#fff}
+  /* login */
+  #login{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#264f3d,#3f6a34 70%,#cdbb8c);padding:24px}
+  .loginbox{background:#fff;border-radius:20px;padding:40px 38px;width:100%;max-width:400px;box-shadow:0 30px 80px rgba(0,0,0,.25);text-align:center}
+  .loginbox img{height:64px;margin-bottom:6px}
+  .loginbox .ttl{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);font-weight:700;margin:4px 0 18px}
+  .loginbox h2{font-size:22px;margin:0 0 4px;color:var(--ink)}
+  .loginbox p.sub{font-size:13.5px;color:var(--muted);margin:0 0 22px}
+  .loginbox input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;margin-bottom:12px;font-family:inherit}
+  .btn{display:inline-block;border:none;cursor:pointer;font-family:inherit;font-weight:600;border-radius:999px;font-size:14px;padding:12px 24px;background:var(--green);color:#fff;transition:.15s}
+  .btn:hover{background:var(--green-d)}
+  .btn.full{width:100%;padding:13px}
+  .btn.sm{padding:8px 16px;font-size:13px}
+  .btn.ghost{background:transparent;color:var(--green);border:1.5px solid #cfddc2}
+  .btn.ghost:hover{background:#eef4ea}
+  .loginbox .hint{font-size:12px;color:#9aa08f;margin-top:14px}
+  /* app */
+  #app{display:none}
+  header.top{background:#0f241a;color:#fff;display:flex;align-items:center;gap:18px;padding:11px 22px;position:sticky;top:0;z-index:20}
+  header.top .logo{height:30px;filter:brightness(0) invert(1)}
+  header.top .brand{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#bfe0cf;font-weight:600}
+  header.top nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+  header.top nav a{color:#cfe0c6;text-decoration:none;font-size:13.5px;font-weight:500;padding:7px 13px;border-radius:8px;cursor:pointer}
+  header.top nav a:hover{background:rgba(255,255,255,.08);color:#fff}
+  header.top nav a.on{background:var(--green);color:#fff}
+  header.top .out{color:#9bb39f;font-size:12.5px;cursor:pointer;margin-left:6px}
+  main{max-width:1080px;margin:0 auto;padding:26px 22px 70px}
+  .view{display:none}.view.on{display:block}
+  .hello{font-size:13px;color:var(--muted);margin:0 0 2px}
+  h1.page{font-size:30px;margin:0 0 4px}
+  .lead{color:var(--muted);font-size:15px;margin:0 0 22px;line-height:1.5}
+  /* banner */
+  .qbanner{background:linear-gradient(120deg,#2f5226,#3f6a34);color:#fff;border-radius:16px;padding:22px 26px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+  .qbanner .big{font-family:'Fraunces',serif;font-size:22px;margin:0}
+  .qbanner p{margin:4px 0 0;color:#dcefd3;font-size:14px;flex:1;min-width:240px}
+  .qbanner .btn{background:var(--yolk);color:#2f3a1f}.qbanner .btn:hover{background:#e0a800}
+  /* stat cards */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .stat .n{font-size:30px;font-weight:700;color:var(--green-d);font-family:'Fraunces',serif}
+  .stat .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+  /* channel chips */
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 15px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+  .chip.on{background:var(--green);color:#fff;border-color:var(--green)}
+  /* item cards */
+  .items{display:flex;flex-direction:column;gap:14px}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;gap:16px;align-items:flex-start}
+  .item .thumb{width:96px;height:96px;border-radius:10px;object-fit:cover;flex:none;background:#eef3e6}
+  .item .body{flex:1;min-width:0}
+  .item .meta{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+  .badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+  .b-newsletter{background:#eef3e2;color:#3f6a34}.b-instagram{background:#fbeaf2;color:#b03a86}.b-facebook{background:#e7eefb;color:#2456b8}.b-website{background:#f3eee4;color:#9a7423}
+  .when{font-size:12.5px;color:var(--muted)}
+  .pill{font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-left:auto}
+  .p-draft{background:#fff4d6;color:#9a7423}.p-scheduled{background:#e6f0fb;color:#2456b8}.p-posted{background:#e6f3ec;color:#2f6b4f}
+  .item h3{font-size:16px;margin:0 0 4px}
+  .item .txt{font-size:13.5px;color:#46503e;line-height:1.5;margin:0}
+  .item .acts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .item textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;font-family:inherit;font-size:13.5px;margin-top:8px;min-height:80px}
+  /* add update form */
+  .form{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;max-width:640px}
+  .form label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px;color:var(--ink)}
+  .form select,.form textarea,.form input[type=text]{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;font-family:inherit;font-size:14px}
+  .form textarea{min-height:90px}
+  .upbox{border:2px dashed #cfd4c8;border-radius:12px;padding:18px;text-align:center;color:var(--muted);font-size:13.5px;cursor:pointer}
+  .upbox img{max-height:120px;border-radius:8px;margin-top:8px}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f241a;color:#fff;padding:13px 22px;border-radius:999px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transition:.3s;z-index:50;pointer-events:none}
+  .toast.show{opacity:1}
+  .empty{text-align:center;color:var(--muted);padding:40px;font-size:14px}
+  .reset{font-size:12px;color:#b08;cursor:pointer;float:right;margin-top:-30px}
+  @media(max-width:680px){.stats{grid-template-columns:1fr 1fr}.item{flex-direction:column}.item .thumb{width:100%;height:160px}}
+</style></head>
+<body>
+<div class="demo-flag">DEMO PORTAL · simulated — the live version posts to your real Klaviyo, Meta &amp; Shopify accounts. Nothing here is published.</div>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="loginbox">
+    <img src="https://talkinghens.com.au/cdn/shop/files/Talking_Hens_Logo_Final_No_Tag-1.png?v=1677111420" alt="Talking Hens">
+    <div class="ttl">Marketing Portal</div>
+    <h2>Welcome back, Jason</h2>
+    <p class="sub">Your newsletter, social &amp; website — all in one place.</p>
+    <input type="text" id="email" placeholder="you@talkinghens.com.au" value="jason@talkinghens.com.au">
+    <input type="password" id="pw" placeholder="Password" value="••••••••">
+    <button class="btn full" onclick="signIn()">Sign in</button>
+    <div class="hint">Demo — just click “Sign in”. Powered by VFXMAGIC.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header class="top">
+    <img class="logo" src="https://talkinghens.com.au/cdn/shop/files/Talking_Hens_Logo_Final_No_Tag-1.png?v=1677111420" alt="Talking Hens">
+    <span class="brand">Marketing Portal</span>
+    <nav>
+      <a data-v="dash" class="on" onclick="go('dash')">Dashboard</a>
+      <a data-v="calendar" onclick="go('calendar')">Content calendar</a>
+      <a data-v="approve" onclick="go('approve')">Approvals</a>
+      <a data-v="add" onclick="go('add')">+ Farm update</a>
+      <a data-v="results" onclick="go('results')">Results</a>
+    </nav>
+    <span class="out" onclick="signOut()">Sign out</span>
+  </header>
+  <main>
+    <div id="view-dash" class="view on"></div>
+    <div id="view-calendar" class="view"></div>
+    <div id="view-approve" class="view"></div>
+    <div id="view-add" class="view"></div>
+    <div id="view-results" class="view"></div>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const IMG = {
+  girl:"https://vfxmagic.github.io/talking-hens/suite/assets/girl.jpg",
+  cover:"https://vfxmagic.github.io/talking-hens/suite/assets/cover.jpg",
+  hens:"https://vfxmagic.github.io/talking-hens/suite/assets/hens.jpg",
+  feed:"https://cdn.shopify.com/s/files/1/0681/6248/6579/files/Untitled_design_8.png?v=1763954463",
+  bins:"https://cdn.shopify.com/s/files/1/0681/6248/6579/products/Artboard4_5ab49b38-a023-4602-9c5f-796e5fb694c0.png?v=1682343403",
+  story:"https://talkinghens.com.au/cdn/shop/files/230424_Talking_Hens_WR-6_copy_2.jpg?v=1684995233&width=600"
+};
+const CH = {
+  newsletter:{label:"Newsletter",icon:"📰",cls:"b-newsletter"},
+  instagram:{label:"Instagram",icon:"📸",cls:"b-instagram"},
+  facebook:{label:"Facebook",icon:"👍",cls:"b-facebook"},
+  website:{label:"Website",icon:"🖥️",cls:"b-website"}
+};
+// seed = one quarter (Jul–Sep), mix of posted / scheduled / draft (needs approval)
+const SEED = [
+  {ch:"newsletter",date:"2026-07-02",title:"Why your girls have gone quiet",txt:"Winter laying-drop explainer + a gentle layer-feed nudge.",img:IMG.girl,status:"posted"},
+  {ch:"instagram",date:"2026-07-03",title:"Frosty mornings on the Peninsula 🐔",txt:"Carousel of the flock at sunrise. #backyardchickens #morningtonpeninsula",img:IMG.hens,status:"posted"},
+  {ch:"facebook",date:"2026-07-05",title:"The damp-coop trap most keepers miss",txt:"Short tip post linking the Learning Centre article.",img:IMG.story,status:"posted"},
+  {ch:"website",date:"2026-07-06",title:"Hens available — winter update",txt:"Refresh the ‘Hens available’ list + winter banner on the homepage.",img:IMG.cover,status:"scheduled"},
+  {ch:"instagram",date:"2026-07-10",title:"Keep the water flowing in a cold snap",txt:"Reel: 20-sec winter watering tip. Link in bio.",img:IMG.hens,status:"scheduled"},
+  {ch:"newsletter",date:"2026-07-16",title:"What a dozen backyard eggs really costs",txt:"Cost-of-living value piece + feed bundle feature.",img:IMG.feed,status:"scheduled"},
+  {ch:"facebook",date:"2026-07-18",title:"Meet the new Welsummers 🥚",txt:"Point-of-lay arrivals — reserve via the link.",img:IMG.girl,status:"scheduled"},
+  {ch:"instagram",date:"2026-07-22",title:"Your hens are smarter than you think",txt:"Fun-fact carousel. High-save content.",img:IMG.cover,status:"draft"},
+  {ch:"website",date:"2026-07-25",title:"New blog: keeping rats out this winter",txt:"Publish the rat-bait Learning Centre article + feature it.",img:IMG.story,status:"draft"},
+  {ch:"newsletter",date:"2026-07-30",title:"The free shavings experiment that backfired",txt:"Story-led product piece — wood shavings feature.",img:IMG.feed,status:"draft"},
+  {ch:"instagram",date:"2026-08-04",title:"Behind the scenes at Merricks",txt:"Founder-voice reel — Jason on the farm.",img:IMG.girl,status:"draft"},
+  {ch:"facebook",date:"2026-08-07",title:"Winter feed-up: what & how much",txt:"Helpful post + link to the feed calculator.",img:IMG.feed,status:"draft"},
+  {ch:"instagram",date:"2026-08-12",title:"Egg of the week: speckled beauties",txt:"Single post, product tie-in.",img:IMG.hens,status:"draft"},
+  {ch:"newsletter",date:"2026-08-13",title:"Is one of your hens eating the eggs?",txt:"Problem-solver + nesting/supplement feature.",img:IMG.story,status:"draft"},
+  {ch:"website",date:"2026-08-20",title:"Spring point-of-lay — coming soon banner",txt:"Tease spring pullets on the homepage + collection.",img:IMG.cover,status:"draft"},
+  {ch:"facebook",date:"2026-08-22",title:"Spring is coming — get set",txt:"Community post: prep your coop for spring.",img:IMG.hens,status:"draft"},
+  {ch:"instagram",date:"2026-09-02",title:"New girls have landed 🐣",txt:"Point-of-lay arrivals reel.",img:IMG.girl,status:"draft"},
+];
+let DATA = [];
+function load(){ try{ DATA = JSON.parse(localStorage.getItem("th_portal")) || null }catch(e){ DATA=null } if(!DATA){ DATA = SEED.map((x,i)=>({id:i+1,...x})); save(); } }
+function save(){ localStorage.setItem("th_portal", JSON.stringify(DATA)); }
+function resetDemo(){ localStorage.removeItem("th_portal"); load(); render(); toast("Demo reset"); }
+
+let filter="all";
+function fmtDate(d){ const t=new Date(d+"T00:00:00"); return t.toLocaleDateString("en-AU",{day:"numeric",month:"short"}); }
+function draftCount(){ return DATA.filter(x=>x.status==="draft").length; }
+function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2200); }
+
+function signIn(){ document.getElementById("login").style.display="none"; document.getElementById("app").style.display="block"; render(); }
+function signOut(){ document.getElementById("app").style.display="none"; document.getElementById("login").style.display="flex"; }
+
+function go(v){ document.querySelectorAll(".view").forEach(e=>e.classList.remove("on"));
+  document.getElementById("view-"+v).classList.add("on");
+  document.querySelectorAll("header nav a").forEach(a=>a.classList.toggle("on",a.dataset.v===v));
+  if(v==="approve"){ filter="all"; } render(); window.scrollTo(0,0); }
+
+function approve(id){ const it=DATA.find(x=>x.id===id); if(it){ it.status="scheduled"; save(); render(); toast("✓ Approved — scheduled for "+fmtDate(it.date)); } }
+function approveAll(){ let n=0; DATA.forEach(x=>{ if(x.status==="draft"){ x.status="scheduled"; n++; } }); save(); render(); toast("✓ "+n+" items approved & scheduled — you're set for the quarter"); }
+function editItem(id){ const it=DATA.find(x=>x.id===id); it._edit=!it._edit; render(); }
+function saveEdit(id){ const it=DATA.find(x=>x.id===id); const ta=document.getElementById("ta-"+id); if(ta){ it.txt=ta.value; } it._edit=false; save(); render(); toast("Saved"); }
+
+function itemCard(it){
+  const c=CH[it.ch];
+  const pill = it.status==="draft"?'<span class="pill p-draft">● Needs your okay</span>'
+            : it.status==="scheduled"?'<span class="pill p-scheduled">✓ Scheduled</span>'
+            : '<span class="pill p-posted">✓ Posted</span>';
+  const acts = it.status==="draft"
+    ? `<button class="btn sm" onclick="approve(${it.id})">Approve</button><button class="btn sm ghost" onclick="editItem(${it.id})">Edit</button>`
+    : (it.status==="scheduled"?`<button class="btn sm ghost" onclick="editItem(${it.id})">Edit</button>`:``);
+  const edit = it._edit ? `<textarea id="ta-${it.id}">${it.txt}</textarea><div class="acts"><button class="btn sm" onclick="saveEdit(${it.id})">Save</button><button class="btn sm ghost" onclick="editItem(${it.id})">Cancel</button></div>` : `<div class="acts">${acts}</div>`;
+  return `<div class="item">
+    <img class="thumb" src="${it.img}" alt="">
+    <div class="body">
+      <div class="meta"><span class="badge ${c.cls}">${c.icon} ${c.label}</span><span class="when">${fmtDate(it.date)}</span>${pill}</div>
+      <h3>${it.title}</h3><p class="txt">${it.txt}</p>
+      ${edit}
+    </div></div>`;
+}
+
+function render(){
+  // DASHBOARD
+  const dc=draftCount();
+  const sched=DATA.filter(x=>x.status==="scheduled").length, posted=DATA.filter(x=>x.status==="posted").length;
+  document.getElementById("view-dash").innerHTML = `
+    <p class="hello">Tuesday morning</p><h1 class="page">G'day Jason 👋</h1>
+    <p class="lead">Your marketing for the quarter is teed up. Here's what needs you.</p>
+    <div class="qbanner">
+      <div><h3 class="big">Q3 (Jul–Sep) is ready</h3><p>${dc} ${dc===1?'item is':'items are'} waiting for your okay. Approve them and you're set until October — everything posts itself on the right dates.</p></div>
+      ${dc?`<button class="btn" onclick="go('approve')">Review &amp; approve (${dc}) →</button>`:`<span style="color:#dcefd3;font-weight:600">All approved ✓</span>`}
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">${dc}</div><div class="l">Waiting for approval</div></div>
+      <div class="stat"><div class="n">${sched}</div><div class="l">Scheduled &amp; ready</div></div>
+      <div class="stat"><div class="n">${posted}</div><div class="l">Posted this quarter</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">Channels managed</div></div>
+    </div>
+    <div class="qbanner" style="background:var(--cream);color:var(--ink);border:1px solid var(--line)">
+      <div><h3 class="big" style="color:var(--green-d)">Something happening on the farm?</h3><p style="color:var(--muted)">New birds in, a sale, an event? Tell us once — we'll turn it into posts &amp; an email across every channel.</p></div>
+      <button class="btn" onclick="go('add')">+ Add a farm update</button>
+    </div>`;
+
+  // CALENDAR (all) & APPROVE (drafts only)
+  const chipRow = ch => `<div class="chips">
+    ${["all","newsletter","instagram","facebook","website"].map(k=>`<span class="chip ${filter===k?'on':''}" onclick="filter='${k}';render()">${k==='all'?'All channels':CH[k].icon+' '+CH[k].label}</span>`).join("")}
+  </div>`;
+  const sorted = [...DATA].sort((a,b)=>a.date<b.date?-1:1);
+  const calItems = sorted.filter(x=> filter==="all"||x.ch===filter);
+  document.getElementById("view-calendar").innerHTML = `
+    <h1 class="page">Content calendar</h1>
+    <p class="lead">Everything queued across your channels this quarter — newsletter, Instagram, Facebook &amp; website. Approve, tweak or just watch it run.</p>
+    ${chipRow()}
+    <div class="items">${calItems.map(itemCard).join("")||'<div class="empty">Nothing here.</div>'}</div>`;
+
+  const drafts = sorted.filter(x=>x.status==="draft");
+  document.getElementById("view-approve").innerHTML = `
+    <h1 class="page">Approvals</h1>
+    <p class="lead">${drafts.length?`${drafts.length} ${drafts.length===1?'item':'items'} ready for your okay. Approve all and you're done for the quarter.`:`You're all caught up — nothing waiting. 🎉`}</p>
+    ${drafts.length?`<button class="btn" style="margin-bottom:18px" onclick="approveAll()">✓ Approve all ${drafts.length} — set &amp; forget</button>`:''}
+    <div class="items">${drafts.map(itemCard).join("")||'<div class="empty">All approved. Everything will post on its scheduled dates.</div>'}</div>`;
+
+  // ADD
+  document.getElementById("view-add").innerHTML = `
+    <h1 class="page">Tell us what's on the farm</h1>
+    <p class="lead">Drop it in once — we'll adapt it into on-brand content across your channels for you to approve.</p>
+    <div class="form">
+      <label>What's happening?</label>
+      <select id="f-type">
+        <option>New birds in</option><option>A sale or special</option><option>An event (e.g. kids' craft day)</option><option>A new product</option><option>Just a story / photo</option>
+      </select>
+      <label>Tell us about it</label>
+      <textarea id="f-text" placeholder="e.g. Point-of-lay Welsummers just arrived — beautiful speckled-egg layers, ready this weekend."></textarea>
+      <label>Add a photo (optional)</label>
+      <div class="upbox" onclick="document.getElementById('f-file').click()">📷 Click to upload a photo<div id="f-prev"></div></div>
+      <input type="file" id="f-file" accept="image/*" style="display:none" onchange="prev(event)">
+      <label>Turn it into…</label>
+      <div class="chips" style="margin-bottom:0">
+        <span class="chip on" data-c="instagram" onclick="this.classList.toggle('on')">📸 Instagram</span>
+        <span class="chip on" data-c="facebook" onclick="this.classList.toggle('on')">👍 Facebook</span>
+        <span class="chip on" data-c="newsletter" onclick="this.classList.toggle('on')">📰 Newsletter mention</span>
+        <span class="chip" data-c="website" onclick="this.classList.toggle('on')">🖥️ Website update</span>
+      </div>
+      <div style="margin-top:22px"><button class="btn" onclick="generate()">✨ Generate drafts</button></div>
+    </div>`;
+
+  // RESULTS
+  document.getElementById("view-results").innerHTML = `
+    <h1 class="page">Results</h1>
+    <p class="lead">How your marketing performed this month (sample data).</p>
+    <div class="stats">
+      <div class="stat"><div class="n">38%</div><div class="l">Newsletter open rate</div></div>
+      <div class="stat"><div class="n">+412</div><div class="l">New followers</div></div>
+      <div class="stat"><div class="n">2,180</div><div class="l">Social reach / wk</div></div>
+      <div class="stat"><div class="n">$3,940</div><div class="l">Sales attributed</div></div>
+    </div>
+    <div class="form" style="max-width:none">
+      <h3 style="margin:0 0 12px;color:var(--green-d)">By channel</h3>
+      ${[["📰 Newsletter","4 sent · 38% open · 6.1% click · $1,610 sales"],["📸 Instagram","13 posts · 2,180 reach · 9.4% engagement"],["👍 Facebook","8 posts · 1,540 reach · 47 link clicks"],["🖥️ Website","3 updates · feed bundle +18% views"]].map(r=>`<div style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px"><b>${r[0]}</b><span style="color:var(--muted)">${r[1]}</span></div>`).join("")}
+      <p style="font-size:12.5px;color:var(--muted);margin-top:14px">A plain-English summary lands in your inbox on the 1st of each month.</p>
+    </div>
+    <span class="reset" onclick="resetDemo()">↺ reset demo</span>`;
+}
+
+let upImg=null;
+function prev(e){ const f=e.target.files[0]; if(!f)return; upImg=URL.createObjectURL(f); document.getElementById("f-prev").innerHTML=`<br><img src="${upImg}">`; }
+function generate(){
+  const type=document.getElementById("f-type").value;
+  const text=document.getElementById("f-text").value.trim() || "an update from the farm";
+  const chans=[...document.querySelectorAll("#view-add .chip.on")].map(c=>c.dataset.c);
+  if(!chans.length){ toast("Pick at least one channel"); return; }
+  const img = upImg || IMG.girl;
+  const today = new Date(); const d = today.toISOString().slice(0,10);
+  let maxId = Math.max(0,...DATA.map(x=>x.id));
+  const drafts = {
+    instagram:{title:"📸 "+type, txt:`Post: "${text}" — on-brand caption + hashtags, your photo.`},
+    facebook:{title:"👍 "+type, txt:`Facebook post drafted from your update: "${text}".`},
+    newsletter:{title:"📰 "+type, txt:`We'll feature "${text}" in the next newsletter.`},
+    website:{title:"🖥️ "+type, txt:`Homepage/blog update drafted from: "${text}".`}
+  };
+  chans.forEach(ch=>{ maxId++; DATA.push({id:maxId,ch,date:d,title:drafts[ch].title,txt:drafts[ch].txt,img,status:"draft"}); });
+  save(); upImg=null;
+  toast("✨ "+chans.length+" drafts created — review them in Approvals");
+  go("approve");
+}
+load();
+</script>
+</body></html>
