@@ -57,7 +57,8 @@
   .chip.on{background:var(--green);color:#fff;border-color:var(--green)}
   /* item cards */
   .items{display:flex;flex-direction:column;gap:14px}
-  .item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;gap:16px;align-items:flex-start}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;gap:16px;align-items:flex-start;cursor:pointer;transition:.13s}
+  .item:hover{box-shadow:0 8px 24px rgba(31,74,59,.09);transform:translateY(-1px);border-color:#d6dccb}
   .item .thumb{width:96px;height:96px;border-radius:10px;object-fit:cover;flex:none;background:#eef3e6}
   .item .body{flex:1;min-width:0}
   .item .meta{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
@@ -68,8 +69,8 @@
   .p-draft{background:#fff4d6;color:#9a7423}.p-scheduled{background:#e6f0fb;color:#2456b8}.p-posted{background:#e6f3ec;color:#2f6b4f}
   .item h3{font-size:16px;margin:0 0 4px}
   .item .txt{font-size:13.5px;color:#46503e;line-height:1.5;margin:0}
-  .item .acts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-  .item textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;font-family:inherit;font-size:13.5px;margin-top:8px;min-height:80px}
+  .item .acts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;align-items:center}
+  .item .open{font-size:13px;color:var(--green);font-weight:600;margin-left:auto}
   /* add update form */
   .form{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;max-width:640px}
   .form label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px;color:var(--ink)}
@@ -77,11 +78,104 @@
   .form textarea{min-height:90px}
   .upbox{border:2px dashed #cfd4c8;border-radius:12px;padding:18px;text-align:center;color:var(--muted);font-size:13.5px;cursor:pointer}
   .upbox img{max-height:120px;border-radius:8px;margin-top:8px}
-  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f241a;color:#fff;padding:13px 22px;border-radius:999px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transition:.3s;z-index:50;pointer-events:none}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f241a;color:#fff;padding:13px 22px;border-radius:999px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transition:.3s;z-index:80;pointer-events:none}
   .toast.show{opacity:1}
   .empty{text-align:center;color:var(--muted);padding:40px;font-size:14px}
   .reset{font-size:12px;color:#b08;cursor:pointer;float:right;margin-top:-30px}
-  @media(max-width:680px){.stats{grid-template-columns:1fr 1fr}.item{flex-direction:column}.item .thumb{width:100%;height:160px}}
+  /* ===== preview modal ===== */
+  .modal{position:fixed;inset:0;background:rgba(15,22,18,.62);display:none;align-items:flex-start;justify-content:center;z-index:60;padding:28px 14px;overflow:auto}
+  .modal.show{display:flex}
+  .sheet{background:#fff;border-radius:18px;max-width:540px;width:100%;box-shadow:0 40px 110px rgba(0,0,0,.45);overflow:hidden;animation:pop .2s ease}
+  @keyframes pop{from{transform:translateY(14px);opacity:.5}to{transform:none;opacity:1}}
+  .sheet-top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:3}
+  .sheet-top .x{margin-left:auto;cursor:pointer;font-size:22px;color:var(--muted);line-height:1;border:none;background:none;padding:0 4px}
+  .sheet-top .x:hover{color:var(--ink)}
+  .sheet-note{font-size:12.5px;color:#5f6b58;background:#f3f6ea;border-bottom:1px solid var(--line);padding:10px 18px;line-height:1.45}
+  .sheet-note.sched{background:#eaf1fb;color:#2456b8}
+  .sheet-note.posted{background:#e9f4ee;color:#2f6b4f}
+  .sheet-note b{color:inherit}
+  .sheet-body{padding:20px 18px;background:#edece6}
+  .sheet-foot{display:flex;gap:10px;padding:13px 18px;border-top:1px solid var(--line);position:sticky;bottom:0;background:#fff;align-items:center;flex-wrap:wrap}
+  .sheet-foot .lbl{font-size:12.5px;color:var(--muted);margin-right:auto;display:flex;align-items:center;gap:7px}
+  /* edit pane */
+  .epane label{display:block;font-size:12px;font-weight:700;color:var(--ink);margin:0 0 6px;letter-spacing:.01em}
+  .epane label.mt{margin-top:14px}
+  .epane input,.epane textarea{width:100%;border:1px solid #cfd4c8;border-radius:10px;padding:11px;font-family:inherit;font-size:14px;background:#fff}
+  .epane textarea{min-height:120px;line-height:1.5}
+  .epane .tip{font-size:12px;color:var(--muted);margin:10px 2px 0}
+  /* ===== Instagram preview ===== */
+  .pv-ig{max-width:360px;margin:0 auto;background:#fff;border:1px solid #dbdbdb;border-radius:10px;overflow:hidden;color:#262626}
+  .pv-ig .hd{display:flex;align-items:center;gap:10px;padding:9px 12px}
+  .pv-ig .av{width:34px;height:34px;border-radius:50%;background:#eef3e2;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #eee;flex:none}
+  .pv-ig .av img{width:80%}
+  .pv-ig .nm{font-size:13px;font-weight:700;line-height:1.15}
+  .pv-ig .loc{font-size:11px;color:#262626}
+  .pv-ig .dots{margin-left:auto;font-size:16px;color:#262626}
+  .pv-ig .img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#eef3e6}
+  .pv-ig .acts{display:flex;gap:15px;padding:10px 12px 4px;font-size:21px;line-height:1}
+  .pv-ig .acts .sp{flex:1}
+  .pv-ig .lk{font-size:13px;font-weight:700;padding:2px 12px 0}
+  .pv-ig .cap{font-size:13px;line-height:1.45;padding:4px 12px 0;white-space:pre-line}
+  .pv-ig .cap b{font-weight:700}
+  .pv-ig .tags{color:#3f6a34;font-weight:600;padding:3px 12px 0;font-size:13px}
+  .pv-ig .cm{font-size:12.5px;color:#8e8e8e;padding:7px 12px 0}
+  .pv-ig .tm{font-size:10px;color:#8e8e8e;text-transform:uppercase;letter-spacing:.05em;padding:8px 12px 14px}
+  /* ===== Facebook preview ===== */
+  .pv-fb{max-width:400px;margin:0 auto;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.14);overflow:hidden;color:#1c1e21}
+  .pv-fb .hd{display:flex;align-items:center;gap:10px;padding:13px 14px 9px}
+  .pv-fb .av{width:42px;height:42px;border-radius:50%;background:#eef3e2;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none}
+  .pv-fb .av img{width:80%}
+  .pv-fb .nm{font-size:14.5px;font-weight:700}
+  .pv-fb .wn{font-size:12px;color:#65676b}
+  .pv-fb .txt{font-size:14.5px;line-height:1.5;padding:0 14px 12px;margin:0;white-space:pre-line}
+  .pv-fb .img{width:100%;max-height:360px;object-fit:cover;display:block}
+  .pv-fb .eng{display:flex;justify-content:space-between;padding:10px 14px;font-size:13px;color:#65676b;border-bottom:1px solid #ced0d4}
+  .pv-fb .react{display:flex;align-items:center;gap:5px}
+  .pv-fb .bar{display:flex}
+  .pv-fb .bar div{flex:1;text-align:center;padding:9px;font-size:14px;font-weight:600;color:#65676b}
+  /* ===== Email / newsletter preview ===== */
+  .pv-mail{max-width:440px;margin:0 auto}
+  .pv-mailhd{background:#fff;border:1px solid var(--line);border-bottom:none;border-radius:12px 12px 0 0;padding:13px 16px}
+  .pv-mailhd .fr{font-size:12.5px;color:var(--muted)}
+  .pv-mailhd .fr b{color:var(--ink)}
+  .pv-mailhd .sj{font-size:15.5px;font-weight:700;margin-top:4px;color:var(--ink)}
+  .pv-mailhd .pre{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .pv-email{background:#faf9f5;border:1px solid var(--line);border-radius:0 0 12px 12px;overflow:hidden}
+  .pv-email .mast{text-align:center;padding:18px 0 2px}
+  .pv-email .mast .mk{font-weight:700;color:var(--green-d);font-size:14.5px;letter-spacing:.06em}
+  .pv-email .mast .kk{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--green);margin-top:4px}
+  .pv-email .hero{height:172px;background-size:cover;background-position:center 62%;margin-top:12px}
+  .pv-email .h1{font-family:'Fraunces',serif;font-weight:600;font-size:23px;line-height:1.18;color:var(--green-d);margin:0;padding:22px 26px 4px}
+  .pv-email .bd{padding:4px 26px}
+  .pv-email .bd p{font-size:14px;line-height:1.7;margin:0 0 13px;color:#3d4a32}
+  .pv-email .bd .greet{color:var(--muted);margin:12px 0}
+  .pv-email .tk{padding:0 26px;margin:0 0 8px}
+  .pv-email .tk li{font-size:13.5px;line-height:1.5;margin:0 0 9px;list-style:none;padding-left:20px;position:relative}
+  .pv-email .tk li::before{content:"";position:absolute;left:2px;top:7px;width:6px;height:6px;border-radius:50%;background:var(--green)}
+  .pv-email .cta{padding:6px 26px 18px}
+  .pv-email .cta a{display:inline-block;border:1.5px solid var(--green);color:var(--green);text-decoration:none;padding:10px 24px;border-radius:30px;font-weight:600;font-size:13.5px}
+  .pv-email .sign{display:flex;align-items:center;gap:12px;padding:0 26px 20px}
+  .pv-email .sign .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(145deg,#6f9158,#cdbb8c);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:14px;flex:none}
+  .pv-email .sign .who b{display:block;font-size:14px;font-weight:600}.pv-email .sign .who span{font-size:12.5px;color:var(--muted)}
+  .pv-email .yard{margin:0 26px 22px;background:var(--green);color:#fff;border-radius:14px;padding:20px 22px}
+  .pv-email .yard h4{margin:0 0 4px;font-size:16px;font-family:'Fraunces',serif}
+  .pv-email .yard .s{font-size:12.5px;opacity:.85;margin:0 0 12px}
+  .pv-email .yard ul{margin:0 0 14px;padding:0;list-style:none}
+  .pv-email .yard li{font-size:13.5px;line-height:1.9;padding-left:18px;position:relative}
+  .pv-email .yard li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.65)}
+  .pv-email .yard a{display:inline-block;background:#fff;color:var(--green-d);text-decoration:none;padding:10px 22px;border-radius:30px;font-weight:600;font-size:13px;margin-top:2px}
+  .pv-email .ft{background:#efeee9;text-align:center;padding:16px;font-size:10.5px;color:#7d8079;line-height:1.7}
+  /* ===== Website preview ===== */
+  .pv-web{max-width:440px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.14);background:#fff;border:1px solid var(--line)}
+  .pv-web .bar{background:#e9e8e2;display:flex;align-items:center;gap:7px;padding:9px 12px}
+  .pv-web .bar .dot{width:10px;height:10px;border-radius:50%;background:#cfcdc4}
+  .pv-web .bar .url{flex:1;background:#fff;border-radius:7px;padding:6px 12px;font-size:12px;color:#46503e;display:flex;align-items:center;gap:6px;margin-left:4px}
+  .pv-web .url .lock{font-size:10px}
+  .wpill{display:inline-block;background:#eef3e2;color:#3f6a34;font-size:11px;font-weight:700;padding:3px 11px;border-radius:999px}
+  .wbtn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;padding:10px 22px;border-radius:30px;font-weight:600;font-size:13px}
+  .wrow{display:flex;align-items:center;gap:10px;font-size:14px;color:#46503e;padding:10px 0;border-bottom:1px solid var(--line)}
+  .wrow:last-child{border-bottom:none}
+  @media(max-width:680px){.stats{grid-template-columns:1fr 1fr}.item{flex-direction:column}.item .thumb{width:100%;height:160px}.item .open{margin-left:0}}
 </style></head>
 <body>
 <div class="demo-flag">DEMO PORTAL · simulated — the live version posts to your real Klaviyo, Meta &amp; Shopify accounts. Nothing here is published.</div>
@@ -122,9 +216,16 @@
     <div id="view-results" class="view"></div>
   </main>
 </div>
+
+<!-- PREVIEW MODAL -->
+<div class="modal" id="modal" onclick="if(event.target===this)closePreview()">
+  <div class="sheet" id="sheet"></div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
+const LOGO="https://talkinghens.com.au/cdn/shop/files/Talking_Hens_Logo_Final_No_Tag-1.png?v=1677111420";
 const IMG = {
   girl:"https://vfxmagic.github.io/talking-hens/suite/assets/girl.jpg",
   cover:"https://vfxmagic.github.io/talking-hens/suite/assets/cover.jpg",
@@ -139,35 +240,103 @@ const CH = {
   facebook:{label:"Facebook",icon:"👍",cls:"b-facebook"},
   website:{label:"Website",icon:"🖥️",cls:"b-website"}
 };
-// seed = one quarter (Jul–Sep), mix of posted / scheduled / draft (needs approval)
+// seed = one quarter (Jul–Sep). Each item carries the REAL customer-facing content,
+// so the preview shows exactly what goes out — not the internal brief.
 const SEED = [
-  {ch:"newsletter",date:"2026-07-02",title:"Why your girls have gone quiet",txt:"Winter laying-drop explainer + a gentle layer-feed nudge.",img:IMG.girl,status:"posted"},
-  {ch:"instagram",date:"2026-07-03",title:"Frosty mornings on the Peninsula 🐔",txt:"Carousel of the flock at sunrise. #backyardchickens #morningtonpeninsula",img:IMG.hens,status:"posted"},
-  {ch:"facebook",date:"2026-07-05",title:"The damp-coop trap most keepers miss",txt:"Short tip post linking the Learning Centre article.",img:IMG.story,status:"posted"},
-  {ch:"website",date:"2026-07-06",title:"Hens available — winter update",txt:"Refresh the ‘Hens available’ list + winter banner on the homepage.",img:IMG.cover,status:"scheduled"},
-  {ch:"instagram",date:"2026-07-10",title:"Keep the water flowing in a cold snap",txt:"Reel: 20-sec winter watering tip. Link in bio.",img:IMG.hens,status:"scheduled"},
-  {ch:"newsletter",date:"2026-07-16",title:"What a dozen backyard eggs really costs",txt:"Cost-of-living value piece + feed bundle feature.",img:IMG.feed,status:"scheduled"},
-  {ch:"facebook",date:"2026-07-18",title:"Meet the new Welsummers 🥚",txt:"Point-of-lay arrivals — reserve via the link.",img:IMG.girl,status:"scheduled"},
-  {ch:"instagram",date:"2026-07-22",title:"Your hens are smarter than you think",txt:"Fun-fact carousel. High-save content.",img:IMG.cover,status:"draft"},
-  {ch:"website",date:"2026-07-25",title:"New blog: keeping rats out this winter",txt:"Publish the rat-bait Learning Centre article + feature it.",img:IMG.story,status:"draft"},
-  {ch:"newsletter",date:"2026-07-30",title:"The free shavings experiment that backfired",txt:"Story-led product piece — wood shavings feature.",img:IMG.feed,status:"draft"},
-  {ch:"instagram",date:"2026-08-04",title:"Behind the scenes at Merricks",txt:"Founder-voice reel — Jason on the farm.",img:IMG.girl,status:"draft"},
-  {ch:"facebook",date:"2026-08-07",title:"Winter feed-up: what & how much",txt:"Helpful post + link to the feed calculator.",img:IMG.feed,status:"draft"},
-  {ch:"instagram",date:"2026-08-12",title:"Egg of the week: speckled beauties",txt:"Single post, product tie-in.",img:IMG.hens,status:"draft"},
-  {ch:"newsletter",date:"2026-08-13",title:"Is one of your hens eating the eggs?",txt:"Problem-solver + nesting/supplement feature.",img:IMG.story,status:"draft"},
-  {ch:"website",date:"2026-08-20",title:"Spring point-of-lay — coming soon banner",txt:"Tease spring pullets on the homepage + collection.",img:IMG.cover,status:"draft"},
-  {ch:"facebook",date:"2026-08-22",title:"Spring is coming — get set",txt:"Community post: prep your coop for spring.",img:IMG.hens,status:"draft"},
-  {ch:"instagram",date:"2026-09-02",title:"New girls have landed 🐣",txt:"Point-of-lay arrivals reel.",img:IMG.girl,status:"draft"},
+  {ch:"newsletter",date:"2026-07-02",title:"Why your girls have gone quiet",txt:"Winter laying-drop explainer + a gentle layer-feed nudge.",img:IMG.cover,status:"posted",
+    subject:"Why your girls have gone quiet 🐔",preheader:"It's the daylight, not the cold — and it's almost never your fault.",
+    body:["Every June the same email lands in my inbox: \"Jason, my girls have stopped laying — have I done something wrong?\" Almost always, the answer is no.",
+          "Hens lay on daylight, not warmth. Once we drop below roughly 14 hours of light a day — which we have — their bodies quietly pull back on eggs to put that energy into staying warm. It's not illness, it's not your feed, and it's certainly not you."],
+    takeaways:["It's the shortening days, not the cold, that slows laying.","Older and heritage hens feel it more than young hybrids.","A good layer feed keeps them in condition so they bounce back come spring."],
+    cta:"Read the full post →",
+    yard:{h:"🐣 In the yard this week",s:"Healthy, ready-to-go birds — first in, first served.",items:["Hy-Line Brown 18-week-olds","Silkies 18-week-olds","Sexed Australorp chicks"],btn:"See this week's birds →"}},
+
+  {ch:"instagram",date:"2026-07-03",title:"Frosty mornings on the Peninsula 🐔",txt:"Carousel of the flock at sunrise.",img:IMG.hens,status:"posted",
+    caption:"Frosty starts, warm girls. ❄️🐔 There's nothing quite like watching the flock wake up to a Peninsula sunrise — even when it's 2°C and we'd all rather be back in bed. Swipe for this morning's run.",
+    tags:"#backyardchickens #morningtonpeninsula #talkinghens #chooksofinstagram #winterchickens",likes:214,comments:18},
+
+  {ch:"facebook",date:"2026-07-05",title:"The damp-coop trap most keepers miss",txt:"Short tip post linking the Learning Centre article.",img:IMG.story,status:"posted",
+    caption:"The damp-coop trap most keepers miss 👀\n\nCold doesn't make hens sick — damp does. A coop sealed up tight to keep the warmth in traps the moisture from their breath and droppings, and that's what leads to respiratory trouble and frostbitten combs. The fix feels backwards: ventilate, even in winter.\n\nFull how-to in the Learning Centre 👇",
+    likes:132,comments:21,shares:14},
+
+  {ch:"website",date:"2026-07-06",title:"Hens available — winter update",txt:"Refresh the ‘Hens available’ list + winter banner on the homepage.",img:IMG.cover,status:"scheduled",
+    webkind:"collection",weburl:"/collections/live-hens",webhead:"This week's birds",webbtn:"Reserve your birds",
+    webitems:["Hy-Line Brown — 18-week-old point-of-lay","Silkies — 18-week-old","Sexed Australorp chicks","Hy-Line chicks — 2-week-old"]},
+
+  {ch:"instagram",date:"2026-07-10",title:"Keep the water flowing in a cold snap",txt:"Reel: 20-sec winter watering tip.",img:IMG.hens,status:"scheduled",
+    caption:"Frozen drinker = thirsty hens. 💧 On a frosty morning your girls can go hours without water before you've even had your coffee. Here's the 10-second trick we use at the farm... 🎥",
+    tags:"#chickenkeeping #winterchickens #backyardchickens #talkinghens",likes:96,comments:7},
+
+  {ch:"newsletter",date:"2026-07-16",title:"What a dozen backyard eggs really costs",txt:"Cost-of-living value piece + feed bundle feature.",img:IMG.feed,status:"scheduled",
+    subject:"What a dozen backyard eggs really costs",preheader:"Spoiler: it was never really about the eggs.",
+    body:["With the cost of everything creeping up, a lot of you have asked whether keeping chooks still 'pays for itself'. It's a fair question — so we sat down and did the sums honestly.",
+          "Once your girls are laying, a backyard dozen works out cheaper than the good free-range eggs at the shops. But the real return was never the eggs — it's the kids who now eat breakfast, the scraps that don't go to landfill, and ten quiet minutes in the run that beat any meditation app."],
+    takeaways:["A laying hen costs only a few dollars a week to feed.","The savings show up faster than most people expect.","The best returns are the ones you can't put a price on."],
+    cta:"Read the full breakdown →"},
+
+  {ch:"facebook",date:"2026-07-18",title:"Meet the new Welsummers 🥚",txt:"Point-of-lay arrivals — reserve via the link.",img:IMG.girl,status:"scheduled",
+    caption:"Meet the new girls! 🥚 Point-of-lay Welsummers have landed — and those gorgeous speckled eggs are worth the wait. Hand-raised, health-checked and ready for their forever backyard.\n\nReserve yours via the link below 💚",
+    likes:178,comments:24,shares:9},
+
+  {ch:"instagram",date:"2026-07-22",title:"Your hens are smarter than you think",txt:"Fun-fact carousel. High-save content.",img:IMG.cover,status:"draft",
+    caption:"Your hens are smarter than you think 🧠 They recognise faces, remember exactly who feeds them, and will absolutely plot their way to a treat. Swipe for 5 things your flock has quietly worked out about you 👀",
+    tags:"#backyardchickens #chickensofinstagram #talkinghens #chooks #smartchickens"},
+
+  {ch:"website",date:"2026-07-25",title:"New blog: keeping rats out this winter",txt:"Publish the rat-bait Learning Centre article + feature it.",img:IMG.story,status:"draft",
+    webkind:"blog",weburl:"/blogs/learning-centre/rats-in-winter",webhead:"How to keep rats out of the coop this winter",
+    webcopy:"Cold weather sends rats looking for two things — food and shelter — and an unprotected coop offers both. Here's how we keep them out at the farm without poisons that could reach your hens or pets."},
+
+  {ch:"newsletter",date:"2026-07-30",title:"The free shavings experiment that backfired",txt:"Story-led product piece — wood shavings feature.",img:IMG.story,status:"draft",
+    subject:"The free shavings experiment that backfired",preheader:"Learn from my mistake so your girls don't have to.",
+    body:["A few winters ago I thought I'd save a few dollars and bed the coop down with free shavings from a local mill. Within a fortnight I had two hens with respiratory rattles and a very guilty conscience.",
+          "Turns out the offcuts were part pine and part treated timber dust — fine for a workshop floor, not for a bird you're collecting eggs from. The 'cheap' option cost me a vet visit and a hard lesson."],
+    takeaways:["Not all 'free' bedding is safe bedding.","Treated or dusty timber can do real respiratory harm.","Clean, screened shavings are cheap insurance."],
+    cta:"See the shavings we actually use →"},
+
+  {ch:"instagram",date:"2026-08-04",title:"Behind the scenes at Merricks",txt:"Founder-voice reel — Jason on the farm.",img:IMG.girl,status:"draft",
+    caption:"A morning at Merricks 🌿 Before the shop opens, this is what the farm looks like — Jason on feed rounds, the dogs supervising (poorly), and 200-odd girls deciding today's the day they'll finally cooperate for the camera. 🎥",
+    tags:"#behindthescenes #morningtonpeninsula #talkinghens #farmlife #backyardchickens"},
+
+  {ch:"facebook",date:"2026-08-07",title:"Winter feed-up: what & how much",txt:"Helpful post + link to the feed calculator.",img:IMG.feed,status:"draft",
+    caption:"Winter feed-up: what, and how much? 🌾\n\nThe most common winter question we get is whether to feed more in the cold. Short answer: same quality feed, free-choice, plus a few warming extras at the right time of day.\n\nWe built a quick feed calculator so you can get it right for your flock size 👇",
+    likes:0,comments:0,shares:0},
+
+  {ch:"instagram",date:"2026-08-12",title:"Egg of the week: speckled beauties",txt:"Single post, product tie-in.",img:IMG.hens,status:"draft",
+    caption:"Egg of the week 🥚 These speckled stunners are courtesy of our Welsummers — no two ever quite the same. Nature already perfected the packaging. 😍",
+    tags:"#eggsofinstagram #welsummer #backyardeggs #talkinghens #speckledeggs"},
+
+  {ch:"newsletter",date:"2026-08-13",title:"Is one of your hens eating the eggs?",txt:"Problem-solver + nesting/supplement feature.",img:IMG.story,status:"draft",
+    subject:"Is one of your hens eating the eggs?",preheader:"It's more common than you'd think — and very fixable.",
+    body:["If you're finding broken shells in the nest box and fewer eggs than you'd expect, you might have an egg-eater on your hands. Once a hen learns the habit it spreads fast, so it's worth catching early.",
+          "The good news: it's almost always boredom or a calcium shortfall, not a lost cause. A few small changes usually sorts it within a week or two."],
+    takeaways:["Egg-eating is usually boredom or low calcium.","Collect early and often while you break the habit.","Darker, roomier nest boxes make a real difference."],
+    cta:"Read the full fix →"},
+
+  {ch:"website",date:"2026-08-20",title:"Spring point-of-lay — coming soon banner",txt:"Tease spring pullets on the homepage + collection.",img:IMG.cover,status:"draft",
+    webkind:"banner",weburl:"/",webhead:"Spring point-of-lay — coming soon",webbtn:"Join the spring list",
+    webcopy:"Our spring pullets are growing out now and will be ready from September. Join the list to get first pick before they sell out."},
+
+  {ch:"facebook",date:"2026-08-22",title:"Spring is coming — get set",txt:"Community post: prep your coop for spring.",img:IMG.hens,status:"draft",
+    caption:"Spring is coming — time to get set 🌱\n\nThe days are about to start stretching out, and your girls will feel it before you do. A quick coop clean-out, a fresh bag of bedding and a calcium top-up now means a flood of eggs when the light returns.\n\nWhat's first on your spring coop list? 👇",
+    likes:0,comments:0,shares:0},
+
+  {ch:"instagram",date:"2026-09-02",title:"New girls have landed 🐣",txt:"Point-of-lay arrivals reel.",img:IMG.girl,status:"draft",
+    caption:"New girls have landed! 🐣 A fresh batch of point-of-lay pullets just arrived at Merricks — healthy, friendly and ready for their forever backyards. Come say hello at the farm shop or reserve online. 💚",
+    tags:"#newarrivals #pointoflay #talkinghens #backyardchickens #morningtonpeninsula"}
 ];
+
+const STORE="th_portal_v2";
 let DATA = [];
-function load(){ try{ DATA = JSON.parse(localStorage.getItem("th_portal")) || null }catch(e){ DATA=null } if(!DATA){ DATA = SEED.map((x,i)=>({id:i+1,...x})); save(); } }
-function save(){ localStorage.setItem("th_portal", JSON.stringify(DATA)); }
-function resetDemo(){ localStorage.removeItem("th_portal"); load(); render(); toast("Demo reset"); }
+function load(){ try{ DATA = JSON.parse(localStorage.getItem(STORE)) || null }catch(e){ DATA=null } if(!DATA){ DATA = SEED.map((x,i)=>({id:i+1,...x})); save(); } }
+function save(){ localStorage.setItem(STORE, JSON.stringify(DATA)); }
+function resetDemo(){ localStorage.removeItem(STORE); closePreview(); load(); render(); toast("Demo reset"); }
 
 let filter="all";
+function esc(s){ return (s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function attr(s){ return esc(s).replace(/"/g,"&quot;"); }
 function fmtDate(d){ const t=new Date(d+"T00:00:00"); return t.toLocaleDateString("en-AU",{day:"numeric",month:"short"}); }
 function draftCount(){ return DATA.filter(x=>x.status==="draft").length; }
-function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2200); }
+function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2400); }
 
 function signIn(){ document.getElementById("login").style.display="none"; document.getElementById("app").style.display="block"; render(); }
 function signOut(){ document.getElementById("app").style.display="none"; document.getElementById("login").style.display="flex"; }
@@ -179,25 +348,179 @@ function go(v){ document.querySelectorAll(".view").forEach(e=>e.classList.remove
 
 function approve(id){ const it=DATA.find(x=>x.id===id); if(it){ it.status="scheduled"; save(); render(); toast("✓ Approved — scheduled for "+fmtDate(it.date)); } }
 function approveAll(){ let n=0; DATA.forEach(x=>{ if(x.status==="draft"){ x.status="scheduled"; n++; } }); save(); render(); toast("✓ "+n+" items approved & scheduled — you're set for the quarter"); }
-function editItem(id){ const it=DATA.find(x=>x.id===id); it._edit=!it._edit; render(); }
-function saveEdit(id){ const it=DATA.find(x=>x.id===id); const ta=document.getElementById("ta-"+id); if(ta){ it.txt=ta.value; } it._edit=false; save(); render(); toast("Saved"); }
 
+function pillFor(it){
+  return it.status==="draft"?'<span class="pill p-draft">● Needs your okay</span>'
+       : it.status==="scheduled"?'<span class="pill p-scheduled">✓ Scheduled</span>'
+       : '<span class="pill p-posted">✓ Posted</span>';
+}
 function itemCard(it){
   const c=CH[it.ch];
-  const pill = it.status==="draft"?'<span class="pill p-draft">● Needs your okay</span>'
-            : it.status==="scheduled"?'<span class="pill p-scheduled">✓ Scheduled</span>'
-            : '<span class="pill p-posted">✓ Posted</span>';
   const acts = it.status==="draft"
-    ? `<button class="btn sm" onclick="approve(${it.id})">Approve</button><button class="btn sm ghost" onclick="editItem(${it.id})">Edit</button>`
-    : (it.status==="scheduled"?`<button class="btn sm ghost" onclick="editItem(${it.id})">Edit</button>`:``);
-  const edit = it._edit ? `<textarea id="ta-${it.id}">${it.txt}</textarea><div class="acts"><button class="btn sm" onclick="saveEdit(${it.id})">Save</button><button class="btn sm ghost" onclick="editItem(${it.id})">Cancel</button></div>` : `<div class="acts">${acts}</div>`;
-  return `<div class="item">
+    ? `<button class="btn sm" onclick="event.stopPropagation();approve(${it.id})">Approve</button><span class="open">Preview &amp; tweak →</span>`
+    : `<span class="open">View ${c.label} preview →</span>`;
+  return `<div class="item" onclick="openPreview(${it.id})">
     <img class="thumb" src="${it.img}" alt="">
     <div class="body">
-      <div class="meta"><span class="badge ${c.cls}">${c.icon} ${c.label}</span><span class="when">${fmtDate(it.date)}</span>${pill}</div>
-      <h3>${it.title}</h3><p class="txt">${it.txt}</p>
-      ${edit}
+      <div class="meta"><span class="badge ${c.cls}">${c.icon} ${c.label}</span><span class="when">${fmtDate(it.date)}</span>${pillFor(it)}</div>
+      <h3>${esc(it.title)}</h3><p class="txt">${esc(it.txt)}</p>
+      <div class="acts">${acts}</div>
     </div></div>`;
+}
+
+/* ===== preview modal ===== */
+let MID=null, MEDIT=false;
+function openPreview(id){ MID=id; MEDIT=false; renderModal(); document.getElementById("modal").classList.add("show"); document.body.style.overflow="hidden"; }
+function closePreview(){ document.getElementById("modal").classList.remove("show"); document.body.style.overflow=""; MID=null; MEDIT=false; }
+function approveModal(id){ approve(id); renderModal(); }
+function saveModal(id){ const it=DATA.find(x=>x.id===id); if(!it)return;
+  const v=k=>{ const el=document.getElementById(k); return el?el.value.trim():""; };
+  if(it.ch==="newsletter"){ it.subject=v("e-sub")||it.subject; it.body=v("e-body").split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean); if(!it.body.length) it.body=[it.txt]; }
+  else if(it.ch==="website"){ it.webhead=v("e-head")||it.webhead; it.webcopy=v("e-copy"); }
+  else { it.caption=v("e-cap"); if(it.ch==="instagram") it.tags=v("e-tags"); }
+  MEDIT=false; save(); render(); renderModal(); toast("✓ Updated — that's exactly what will go out");
+}
+
+function editPane(it){
+  if(it.ch==="newsletter") return `<div class="epane">
+    <label>Subject line</label><input id="e-sub" value="${attr(it.subject||it.title)}">
+    <label class="mt">Email body</label><textarea id="e-body" rows="9">${esc((it.body&&it.body.length?it.body:[it.txt]).join("\n\n"))}</textarea>
+    <p class="tip">One paragraph per blank line. Your sign-off, the “in the yard” block and footer stay as they are.</p></div>`;
+  if(it.ch==="website") return `<div class="epane">
+    <label>Headline</label><input id="e-head" value="${attr(it.webhead||it.title)}">
+    <label class="mt">Text on the page</label><textarea id="e-copy" rows="6">${esc(it.webcopy||it.txt)}</textarea></div>`;
+  return `<div class="epane">
+    <label>Caption</label><textarea id="e-cap" rows="8">${esc(it.caption||it.txt)}</textarea>
+    ${it.ch==="instagram"?`<label class="mt">Hashtags</label><input id="e-tags" value="${attr(it.tags||"")}">`:""}
+    <p class="tip">Tweak the words — the preview updates the moment you save.</p></div>`;
+}
+
+function preview(it){
+  if(it.ch==="instagram") return igPV(it);
+  if(it.ch==="facebook")  return fbPV(it);
+  if(it.ch==="newsletter")return mailPV(it);
+  return webPV(it);
+}
+function igPV(it){
+  const cap=esc(it.caption||it.txt);
+  const tags=esc(it.tags||"#talkinghens #backyardchickens #morningtonpeninsula");
+  const likes=(it.likes!=null?it.likes:124), cm=(it.comments!=null?it.comments:12);
+  return `<div class="pv-ig">
+    <div class="hd"><div class="av"><img src="${LOGO}" alt=""></div><div><div class="nm">talkinghens</div><div class="loc">Merricks, Victoria</div></div><div class="dots">•••</div></div>
+    <img class="img" src="${it.img}" alt="">
+    <div class="acts"><span>♡</span><span>💬</span><span>➤</span><span class="sp"></span><span>🔖</span></div>
+    <div class="lk">${likes} likes</div>
+    <div class="cap"><b>talkinghens</b> ${cap}</div>
+    <div class="tags">${tags}</div>
+    <div class="cm">View all ${cm} comments</div>
+    <div class="tm">${fmtDate(it.date)}</div>
+  </div>`;
+}
+function fbPV(it){
+  const txt=esc(it.caption||it.txt);
+  const likes=(it.likes!=null?it.likes:84), cm=(it.comments!=null?it.comments:9), sh=(it.shares!=null?it.shares:4);
+  return `<div class="pv-fb">
+    <div class="hd"><div class="av"><img src="${LOGO}" alt=""></div><div><div class="nm">Talking Hens</div><div class="wn">${fmtDate(it.date)} · 🌐</div></div></div>
+    <p class="txt">${txt}</p>
+    <img class="img" src="${it.img}" alt="">
+    <div class="eng"><span class="react">👍❤️ ${likes}</span><span>${cm} comments · ${sh} shares</span></div>
+    <div class="bar"><div>👍 Like</div><div>💬 Comment</div><div>➤ Share</div></div>
+  </div>`;
+}
+function mailPV(it){
+  const subj=esc(it.subject||it.title);
+  const pre=esc(it.preheader||it.txt);
+  const paras=(it.body&&it.body.length?it.body:[it.txt]).map(p=>`<p>${esc(p)}</p>`).join("");
+  const tk=(it.takeaways&&it.takeaways.length)?`<ul class="tk">${it.takeaways.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:"";
+  const cta=it.cta?`<div class="cta"><a>${esc(it.cta)}</a></div>`:"";
+  const yard=it.yard?`<div class="yard"><h4>${esc(it.yard.h)}</h4><p class="s">${esc(it.yard.s)}</p><ul>${it.yard.items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><a>${esc(it.yard.btn)}</a></div>`:"";
+  return `<div class="pv-mail">
+    <div class="pv-mailhd"><div class="fr"><b>Talking Hens</b> &lt;hello@talkinghens.com.au&gt;</div><div class="sj">${subj}</div><div class="pre">${pre}</div></div>
+    <div class="pv-email">
+      <div class="mast"><div class="mk">🐔 TALKING HENS</div><div class="kk">The Weekly</div></div>
+      <div class="hero" style="background-image:url('${it.img}')"></div>
+      <h1 class="h1">${esc(it.title)}</h1>
+      <div class="bd"><p class="greet">Hi Kerryn,</p>${paras}</div>
+      ${tk}${cta}
+      <div class="sign"><div class="av">J&amp;G</div><div class="who"><b>Jason &amp; Giuliana</b><span>Talking Hens, Merricks</span></div></div>
+      ${yard}
+      <div class="ft">Talking Hens · 3590 Frankston-Flinders Road, Merricks VIC 3916<br>You're receiving this because you're part of the flock. <u>Unsubscribe</u>.</div>
+    </div></div>`;
+}
+function webPV(it){
+  const url=esc(it.weburl||"");
+  const bar=`<div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url"><span class="lock">🔒</span> talkinghens.com.au${url}</span></div>`;
+  const head=esc(it.webhead||it.title), copy=esc(it.webcopy||it.txt), btn=esc(it.webbtn||"Shop now");
+  if(it.webkind==="blog"){
+    return `<div class="pv-web">${bar}
+      <img style="width:100%;height:170px;object-fit:cover;display:block" src="${it.img}" alt="">
+      <div style="padding:18px 20px 22px">
+        <span class="wpill">New blog · Learning Centre</span>
+        <h2 style="font-family:'Fraunces',serif;font-size:21px;color:var(--green-d);margin:11px 0 6px">${head}</h2>
+        <div style="font-size:12.5px;color:var(--muted);margin-bottom:11px">Talking Hens · ${fmtDate(it.date)} · 4 min read</div>
+        <p style="font-size:14px;line-height:1.6;color:#46503e;margin:0 0 15px">${copy}</p>
+        <a class="wbtn">Read the full article →</a>
+      </div></div>`;
+  }
+  if(it.webkind==="collection"){
+    const rows=(it.webitems||copy.split("·")).map(x=>`<div class="wrow"><span>🐔</span> ${esc(typeof x==="string"?x.trim():x)}</div>`).join("");
+    return `<div class="pv-web">${bar}
+      <div style="padding:20px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap"><h2 style="font-family:'Fraunces',serif;font-size:21px;color:var(--green-d);margin:0">${head}</h2><span class="wpill" style="margin-left:auto">Updated ${fmtDate(it.date)}</span></div>
+        <div>${rows}</div>
+        <a class="wbtn" style="margin-top:16px">${btn}</a>
+      </div></div>`;
+  }
+  // banner = homepage hero
+  return `<div class="pv-web">${bar}
+    <div style="position:relative;height:240px">
+      <div style="position:absolute;inset:0;background:url('${it.img}') center/cover"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(31,74,59,.74))"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:22px 22px 24px;color:#fff">
+        <span class="wpill" style="background:rgba(255,255,255,.92);color:var(--green-d)">Homepage banner</span>
+        <h2 style="font-family:'Fraunces',serif;font-size:25px;margin:11px 0 6px;color:#fff">${head}</h2>
+        <p style="font-size:13.5px;margin:0 0 15px;color:#eef3e2;max-width:340px;line-height:1.5">${copy}</p>
+        <a class="wbtn">${btn}</a>
+      </div></div></div>`;
+}
+
+function renderModal(){
+  const it=DATA.find(x=>x.id===MID); if(!it){ closePreview(); return; }
+  const c=CH[it.ch];
+  const act = {
+    instagram:{go:"be posted to Instagram",done:"Posted to Instagram"},
+    facebook:{go:"be posted to Facebook",done:"Posted to Facebook"},
+    newsletter:{go:"be emailed to your subscribers",done:"Emailed to your subscribers"},
+    website:{go:"go live on your website",done:"Published to your website"}
+  }[it.ch];
+  let noteCls="", note="";
+  if(it.status==="draft"){ note=`<b>This is exactly what will ${act.go}.</b> Nothing is published until you approve it.`; }
+  else if(it.status==="scheduled"){ noteCls=" sched"; note=`<b>Approved.</b> This will ${act.go} on ${fmtDate(it.date)}.`; }
+  else { noteCls=" posted"; note=`<b>${act.done}</b> on ${fmtDate(it.date)}.`; }
+
+  const bodyHTML = MEDIT ? editPane(it) : preview(it);
+  let foot;
+  if(MEDIT){
+    foot = `<button class="btn sm" onclick="saveModal(${it.id})">Save changes</button>
+            <button class="btn sm ghost" onclick="MEDIT=false;renderModal()">Cancel</button>`;
+  } else if(it.status==="draft"){
+    foot = `<span class="lbl">${c.icon} ${c.label} · ${fmtDate(it.date)}</span>
+            <button class="btn sm ghost" onclick="MEDIT=true;renderModal()">✎ Tweak the words</button>
+            <button class="btn sm" onclick="approveModal(${it.id})">✓ Approve &amp; schedule</button>`;
+  } else if(it.status==="scheduled"){
+    foot = `<span class="lbl">${c.icon} ${c.label} · ${fmtDate(it.date)}</span>
+            <button class="btn sm ghost" onclick="MEDIT=true;renderModal()">✎ Tweak the words</button>`;
+  } else {
+    foot = `<span class="lbl">${c.icon} ${c.label} · ${fmtDate(it.date)}</span>`;
+  }
+
+  document.getElementById("sheet").innerHTML = `
+    <div class="sheet-top"><span class="badge ${c.cls}">${c.icon} ${c.label}</span><span class="when">${fmtDate(it.date)}</span>
+      <button class="x" onclick="closePreview()" aria-label="Close">×</button></div>
+    <div class="sheet-note${noteCls}">${note}</div>
+    <div class="sheet-body">${bodyHTML}</div>
+    <div class="sheet-foot">${foot}</div>`;
+  document.getElementById("modal").scrollTop=0;
 }
 
 function render(){
@@ -208,7 +531,7 @@ function render(){
     <p class="hello">Tuesday morning</p><h1 class="page">G'day Jason 👋</h1>
     <p class="lead">Your marketing for the quarter is teed up. Here's what needs you.</p>
     <div class="qbanner">
-      <div><h3 class="big">Q3 (Jul–Sep) is ready</h3><p>${dc} ${dc===1?'item is':'items are'} waiting for your okay. Approve them and you're set until October — everything posts itself on the right dates.</p></div>
+      <div><h3 class="big">Q3 (Jul–Sep) is ready</h3><p>${dc} ${dc===1?'item is':'items are'} waiting for your okay. Tap any one to see exactly what'll go out, then approve — everything posts itself on the right dates.</p></div>
       ${dc?`<button class="btn" onclick="go('approve')">Review &amp; approve (${dc}) →</button>`:`<span style="color:#dcefd3;font-weight:600">All approved ✓</span>`}
     </div>
     <div class="stats">
@@ -223,28 +546,28 @@ function render(){
     </div>`;
 
   // CALENDAR (all) & APPROVE (drafts only)
-  const chipRow = ch => `<div class="chips">
+  const chipRow = () => `<div class="chips">
     ${["all","newsletter","instagram","facebook","website"].map(k=>`<span class="chip ${filter===k?'on':''}" onclick="filter='${k}';render()">${k==='all'?'All channels':CH[k].icon+' '+CH[k].label}</span>`).join("")}
   </div>`;
   const sorted = [...DATA].sort((a,b)=>a.date<b.date?-1:1);
   const calItems = sorted.filter(x=> filter==="all"||x.ch===filter);
   document.getElementById("view-calendar").innerHTML = `
     <h1 class="page">Content calendar</h1>
-    <p class="lead">Everything queued across your channels this quarter — newsletter, Instagram, Facebook &amp; website. Approve, tweak or just watch it run.</p>
+    <p class="lead">Everything queued across your channels this quarter — newsletter, Instagram, Facebook &amp; website. Tap any card to preview it exactly as it'll appear.</p>
     ${chipRow()}
     <div class="items">${calItems.map(itemCard).join("")||'<div class="empty">Nothing here.</div>'}</div>`;
 
   const drafts = sorted.filter(x=>x.status==="draft");
   document.getElementById("view-approve").innerHTML = `
     <h1 class="page">Approvals</h1>
-    <p class="lead">${drafts.length?`${drafts.length} ${drafts.length===1?'item':'items'} ready for your okay. Approve all and you're done for the quarter.`:`You're all caught up — nothing waiting. 🎉`}</p>
+    <p class="lead">${drafts.length?`${drafts.length} ${drafts.length===1?'item':'items'} ready for your okay. Tap one to see the real post, newsletter or website change — then approve. Or approve all and you're done for the quarter.`:`You're all caught up — nothing waiting. 🎉`}</p>
     ${drafts.length?`<button class="btn" style="margin-bottom:18px" onclick="approveAll()">✓ Approve all ${drafts.length} — set &amp; forget</button>`:''}
     <div class="items">${drafts.map(itemCard).join("")||'<div class="empty">All approved. Everything will post on its scheduled dates.</div>'}</div>`;
 
   // ADD
   document.getElementById("view-add").innerHTML = `
     <h1 class="page">Tell us what's on the farm</h1>
-    <p class="lead">Drop it in once — we'll adapt it into on-brand content across your channels for you to approve.</p>
+    <p class="lead">Drop it in once — we'll adapt it into on-brand content across your channels for you to preview &amp; approve.</p>
     <div class="form">
       <label>What's happening?</label>
       <select id="f-type">
@@ -281,6 +604,8 @@ function render(){
       <p style="font-size:12.5px;color:var(--muted);margin-top:14px">A plain-English summary lands in your inbox on the 1st of each month.</p>
     </div>
     <span class="reset" onclick="resetDemo()">↺ reset demo</span>`;
+
+  if(MID!=null && document.getElementById("modal").classList.contains("show")) renderModal();
 }
 
 let upImg=null;
@@ -293,17 +618,23 @@ function generate(){
   const img = upImg || IMG.girl;
   const today = new Date(); const d = today.toISOString().slice(0,10);
   let maxId = Math.max(0,...DATA.map(x=>x.id));
-  const drafts = {
-    instagram:{title:"📸 "+type, txt:`Post: "${text}" — on-brand caption + hashtags, your photo.`},
-    facebook:{title:"👍 "+type, txt:`Facebook post drafted from your update: "${text}".`},
-    newsletter:{title:"📰 "+type, txt:`We'll feature "${text}" in the next newsletter.`},
-    website:{title:"🖥️ "+type, txt:`Homepage/blog update drafted from: "${text}".`}
+  const make = {
+    instagram:()=>({title:"📸 "+type, txt:"Instagram post drafted from your update.",
+      caption:text, tags:"#talkinghens #backyardchickens #morningtonpeninsula #chooksofinstagram"}),
+    facebook:()=>({title:"👍 "+type, txt:"Facebook post drafted from your update.",
+      caption:text, likes:0,comments:0,shares:0}),
+    newsletter:()=>({title:type, txt:"Featured in the next newsletter.",
+      subject:type, preheader:text, body:[text, "Pop in to the farm shop at Merricks or have a browse online — we'd love to see you."], cta:"Find out more →"}),
+    website:()=>({title:type, txt:"Website update drafted from your news.",
+      webkind:"banner", weburl:"/", webhead:type, webcopy:text, webbtn:"Find out more"})
   };
-  chans.forEach(ch=>{ maxId++; DATA.push({id:maxId,ch,date:d,title:drafts[ch].title,txt:drafts[ch].txt,img,status:"draft"}); });
+  chans.forEach(ch=>{ maxId++; DATA.push({id:maxId,ch,date:d,img,status:"draft",...make[ch]()}); });
   save(); upImg=null;
-  toast("✨ "+chans.length+" drafts created — review them in Approvals");
+  toast("✨ "+chans.length+" drafts created — preview them in Approvals");
   go("approve");
 }
+
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closePreview(); });
 load();
 </script>
 </body></html>
